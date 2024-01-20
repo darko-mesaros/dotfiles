@@ -26,16 +26,40 @@
 
 import os
 import subprocess
+import socket
 
 from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile import hook
 
+# MULTI-SYSTEM CHECKS
+# these values should reflect the requirements of each system
+os_hostname = socket.gethostname()
+# Desktop Computer (2024-01-20)
+if os_hostname == "bessie":
+    autostart = "bessie_autostart.sh"
+    network_interface = "enp7s0"
+    interface_font = "JetBrainsMono Nerd Font"
+# Framework Laptop (2024-01-20)
+elif os_hostname == "jugokozmos":
+    autostart = "jugokozmos_autostart.sh"
+    network_interface = "wlan0"
+    interface_font = "JetBrains Mono"
+# default
+else:
+    autostart = "autostart.sh"
+    network_interface = "wlan0"
+    interface_font = "JetBrains Mono"
+
+
+
+
 # AUTOSTART
 @hook.subscribe.startup_once
 def autostart():
-    script = os.path.expanduser("~/.config/qtile/autostart.sh")
+    # MULTI-SYSTEM
+    script = os.path.expanduser("~/.config/qtile/"+autostart)
     subprocess.run([script])
 
 mod = "mod4"
@@ -190,8 +214,9 @@ layouts = [
     # layout.Zoomy(),
 ]
 
+# MULTI-SYSTEM
 widget_defaults = dict(
-    font="JetBrainsMono Nerd Font",
+    font=interface_font,
     fontsize=18,
     padding=3,
 )
@@ -216,7 +241,8 @@ screens = [
                     name_transform=lambda name: name.upper(),
                 ),
                 widget.Systray(),
-                widget.Net(interface='enp7s0'),
+                # MULTI-SYSTEM
+                widget.Net(interface=network_interface),
                 widget.NetGraph(type='box', border_color='#181', graph_color='#181'),
                 widget.Sep(foreground='#EBAC00', padding=32), # SPACER
                 widget.Memory(),
