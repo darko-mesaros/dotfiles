@@ -40,16 +40,20 @@ os_hostname = socket.gethostname()
 if os_hostname == "bessie":
     autostart = "bessie_autostart.sh"
     network_interface = "enp7s0"
+    network_icon = "󰈀"
     interface_font = "JetBrainsMono Nerd Font"
+
 # Framework Laptop (2024-01-20)
 elif os_hostname == "jugoplastika":
     autostart = "jugoplastika_autostart.sh"
+    network_icon = "󰖩"
     network_interface = "wlan0"
     interface_font = "JetBrains Mono"
 # default
 else:
     autostart = "autostart.sh"
     network_interface = "wlan0"
+    network_icon = "󰈀"
     interface_font = "JetBrains Mono"
 
 # AUTOSTART
@@ -241,14 +245,23 @@ screens = [
                     },
                     name_transform=lambda name: name.upper(),
                 ),
+                widget.Sep(foreground='#EBAC00', padding=32, linewidth=5), # SPACER
                 widget.Systray(),
+                widget.Sep(foreground='#EBAC00', padding=32), # SPACER
                 # MULTI-SYSTEM
-                widget.Net(interface=network_interface),
+                widget.Net(
+                    interface=network_interface,
+                    format = network_icon+' {down:6.2f}{down_suffix:<2}↓↑{up:6.2f}{up_suffix:<2}'
+                    ),
                 widget.NetGraph(type='box', border_color='#181', graph_color='#181'),
                 widget.Sep(foreground='#EBAC00', padding=32), # SPACER
-                widget.Memory(),
+                widget.Memory(
+                    format = ' {MemPercent}%'
+                    ),
                 widget.Sep(foreground='#EBAC00', padding=32), # SPACER
-                widget.TextBox("cpu:"),
+                widget.CPU(
+                    format = '󰻠 {load_percent}%'
+                    ),
                 widget.CPUGraph(),
                 widget.Sep(foreground='#EBAC00', padding=32), # SPACER
                 widget.PulseVolume(
