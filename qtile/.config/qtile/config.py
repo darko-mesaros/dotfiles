@@ -36,22 +36,23 @@ from libqtile import hook
 # MULTI-SYSTEM CHECKS
 # these values should reflect the requirements of each system
 os_hostname = socket.gethostname()
+autostart = ""
 # Desktop Computer (2024-01-20)
 if os_hostname == "bessie":
-    autostart = "bessie_autostart.sh"
+    autostart_script = "bessie_autostart.sh"
     network_interface = "enp7s0"
     network_icon = "󰈀"
     interface_font = "JetBrainsMono Nerd Font"
 
 # Framework Laptop (2024-01-20)
 elif os_hostname == "jugoplastika":
-    autostart = "jugoplastika_autostart.sh"
+    autostart_script = "jugoplastika_autostart.sh"
     network_icon = "󰖩"
     network_interface = "wlan0"
     interface_font = "JetBrainsMono Nerd Font"
 # default
 else:
-    autostart = "autostart.sh"
+    autostart_script = "autostart.sh"
     network_interface = "wlan0"
     network_icon = "󰈀"
     interface_font = "JetBrains Mono"
@@ -60,7 +61,7 @@ else:
 @hook.subscribe.startup_once
 def autostart():
     # MULTI-SYSTEM
-    script = os.path.expanduser("~/.config/qtile/"+autostart)
+    script = os.path.expanduser("~/.config/qtile/"+autostart_script)
     subprocess.run([script])
 
 mod = "mod4"
