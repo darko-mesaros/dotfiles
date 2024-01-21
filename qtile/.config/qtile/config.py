@@ -48,7 +48,7 @@ elif os_hostname == "jugoplastika":
     autostart = "jugoplastika_autostart.sh"
     network_icon = "󰖩"
     network_interface = "wlan0"
-    interface_font = "JetBrains Mono"
+    interface_font = "JetBrainsMono Nerd Font"
 # default
 else:
     autostart = "autostart.sh"
