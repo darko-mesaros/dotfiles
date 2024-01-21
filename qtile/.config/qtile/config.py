@@ -36,7 +36,6 @@ from libqtile import hook
 # MULTI-SYSTEM CHECKS
 # these values should reflect the requirements of each system
 os_hostname = socket.gethostname()
-autostart = ""
 # Desktop Computer (2024-01-20)
 if os_hostname == "bessie":
     autostart_script = "bessie_autostart.sh"
