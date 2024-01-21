@@ -42,8 +42,8 @@ if os_hostname == "bessie":
     network_interface = "enp7s0"
     interface_font = "JetBrainsMono Nerd Font"
 # Framework Laptop (2024-01-20)
-elif os_hostname == "jugokozmos":
-    autostart = "jugokozmos_autostart.sh"
+elif os_hostname == "jugoplastika":
+    autostart = "jugoplastika_autostart.sh"
     network_interface = "wlan0"
     interface_font = "JetBrains Mono"
 # default
