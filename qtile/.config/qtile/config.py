@@ -52,9 +52,6 @@ else:
     network_interface = "wlan0"
     interface_font = "JetBrains Mono"
 
-
-
-
 # AUTOSTART
 @hook.subscribe.startup_once
 def autostart():
@@ -118,7 +115,11 @@ keys = [
 
     Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
     Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -3%")),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +3%"))
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +3%")),
+
+    # BACKLIGHT
+    Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc 5")),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec 5"))
 ]
 
 
