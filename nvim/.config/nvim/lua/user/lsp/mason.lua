@@ -16,6 +16,7 @@ local servers = {
   "terraformls",
   "rust_analyzer",
   "asm_lsp",
+  "nil_ls",  -- nix
 }
 
 local settings = {
