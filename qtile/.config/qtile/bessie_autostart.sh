@@ -16,6 +16,7 @@ nitrogen --restore &
 udiskie &
 #
 ## Compositor
+picom &
 #run picom --experimental-backend
 #
 ## bluetooth
