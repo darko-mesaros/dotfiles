@@ -65,7 +65,7 @@ alias c="clear && pwd && ll"
 alias cd="z"
 alias cdi="zi"
 alias zshedit="vim /home/darko/.zshrc"
-alias cggpg="gpg --quiet --decrypt /home/darko/workspace/keys/chatgpt.txt.gpg > /home/darko/workspace/keys/chatgpt.txt"
+alias cggpg="gpg --quiet --decrypt /home/darko/workspace/keys/chatgpt.txt.gpg > /dev/null"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
