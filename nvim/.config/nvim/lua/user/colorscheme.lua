@@ -1,4 +1,4 @@
-local colorscheme = "gruvbox"
+local colorscheme = "flexoki-dark"
 
 -- the following tries to set the scheme and if it fails it just returns
 -- no error thrown
