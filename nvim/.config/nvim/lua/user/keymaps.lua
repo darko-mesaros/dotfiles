@@ -48,9 +48,9 @@ keymap("n", "<leader>gd", "<Esc>:colorscheme moonfly<CR>", opts)
 keymap("n", "<leader>gl", "<Esc>:colorscheme morning<CR>", opts)
 
 -- Toggleterm
-keymap("n", "<leader>tf", "<Esc>:ToggleTerm direction=float<CR>", opts)
+keymap("n", "<leader>tt", "<Esc>:ToggleTerm direction=float<CR>", opts)
 keymap("n", "<leader>tv", "<Esc>:ToggleTerm size=40 direction=vertical<CR>", opts)
-keymap("n", "<leader>tt", "<Esc>:ToggleTerm size=10 direction=horizontal<CR>", opts)
+keymap("n", "<leader>th", "<Esc>:ToggleTerm size=10 direction=horizontal<CR>", opts)
 keymap("n", "<leader>tp", "<Esc>:lua _PYTHON_TOGGLE()<CR>", opts)
 keymap("n", "<leader>tn", "<Esc>:lua _NODE_TOGGLE()<CR>", opts)
 keymap("n", "<leader>tg", "<Esc>:lua _LAZYGIT_TOGGLE()<CR>", opts)
@@ -79,17 +79,9 @@ keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
 keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
---keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = true }))<cr>", opts)
 keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
 
--- THIS BREAKS CLEAN INSTALLS - TODO: make sure it can error out and continue installing
---local status_ok, telescope = pcall(require, "telescope.builtin")
---if not status_ok then
---  return
---end
---builtin = require('telescope.builtin')
---vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
---vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
---vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
---vim.keymap.set('n', '<leader>fh', builtin.help_tags, {}) -- vim help
---vim.keymap.set('n', '<leader>fc', builtin.treesitter, {}) -- tree sitter func names, variables
+
+-- NOICE
+keymap("n", "<c-l>", "<cmd>Noice dismiss<cr>", opts)
+
