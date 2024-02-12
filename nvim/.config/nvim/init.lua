@@ -1,3 +1,4 @@
+-- TODO doing some stuff here
 require "user.options"
 require "user.plugins"
 require "user.colorscheme"
@@ -21,4 +22,5 @@ require "user.nvim-tmux"
 require "user.gennvim"
 require "user.chatgpt"
 require "user.osc52"
+require "user.todo"
 require "user.keymaps"

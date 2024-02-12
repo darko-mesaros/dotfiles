@@ -1,5 +1,4 @@
 local fn = vim.fn
-
 -- Automatically install lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -47,6 +46,10 @@ require("lazy").setup({
         "kkharji/sqlite.lua",
         "nvim-telescope/telescope.nvim"
     }
+   },
+   {
+     "folke/todo-comments.nvim",
+     dependencies = { "nvim-lua/plenary.nvim" },
    },
 
   -- generative ai
