@@ -312,6 +312,8 @@ floating_layout = layout.Floating(
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
         Match(wm_class="pavucontrol"),  # PulseAudio Volume Control
+        Match(wm_class="signal"),  # Signal desktop
+        Match(wm_class="pcmanfm"),  # PC Man FM
     ]
 )
 auto_fullscreen = True
