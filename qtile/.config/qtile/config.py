@@ -123,7 +123,13 @@ keys = [
 
     # BACKLIGHT
     Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc 5")),
-    Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec 5"))
+    Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec 5")),
+
+    # SCREENSHOTS
+    ## select
+    Key([], "Print", lazy.spawn("bash -c 'maim --select ~/pic/screens/$(date +%F-%T).png'")),
+    ## current active window
+    Key([mod, "shift"], "Print", lazy.spawn("bash -c 'maim -i $(xdotool getactivewindow) ~/pic/screens/$(date +%F-%T).png'")),
 ]
 
 
