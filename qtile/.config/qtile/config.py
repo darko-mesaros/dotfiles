@@ -123,7 +123,13 @@ keys = [
 
     # BACKLIGHT
     Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc 5")),
-    Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec 5"))
+    Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec 5")),
+
+    # SCREENSHOTS
+    ## select
+    Key([], "Print", lazy.spawn("bash -c 'maim --select ~/pic/screens/$(date +%F-%T).png'")),
+    ## current active window
+    Key([mod, "shift"], "Print", lazy.spawn("bash -c 'maim -i $(xdotool getactivewindow) ~/pic/screens/$(date +%F-%T).png'")),
 ]
 
 
@@ -312,6 +318,8 @@ floating_layout = layout.Floating(
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
         Match(wm_class="pavucontrol"),  # PulseAudio Volume Control
+        Match(wm_class="signal"),  # Signal desktop
+        Match(wm_class="pcmanfm"),  # PC Man FM
     ]
 )
 auto_fullscreen = True
