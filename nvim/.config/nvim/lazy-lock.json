@@ -1,5 +1,5 @@
 {
-  "ChatGPT.nvim": { "branch": "main", "commit": "16eddf50d92fd089726f78d039982f8561bf90e6" },
+  "ChatGPT.nvim": { "branch": "main", "commit": "48c59167beeb6ee0caa501c46cecc97b9be8571d" },
   "Comment.nvim": { "branch": "master", "commit": "0236521ea582747b58869cb72f70ccfa967d2e89" },
   "LuaSnip": { "branch": "master", "commit": "82108e7e31cc6fc223cc5df5cae6d89f70bb199f" },
   "alpha-nvim": { "branch": "main", "commit": "29074eeb869a6cbac9ce1fbbd04f5f5940311b32" },
@@ -30,6 +30,7 @@
   "nvim-autopairs": { "branch": "master", "commit": "9fd41181693dd4106b3e414a822bb6569924de81" },
   "nvim-cmp": { "branch": "main", "commit": "538e37ba87284942c1d76ed38dd497e54e65b891" },
   "nvim-colorizer.lua": { "branch": "master", "commit": "36c610a9717cc9ec426a07c8e6bf3b3abcb139d6" },
+  "nvim-comment": { "branch": "main", "commit": "e9ac16ab056695cad6461173693069ec070d2b23" },
   "nvim-lspconfig": { "branch": "master", "commit": "796394fd19fb878e8dbc4fd1e9c9c186ed07a5f4" },
   "nvim-notify": { "branch": "master", "commit": "1576123bff3bed67bc673a3076e591abfe5d8ca9" },
   "nvim-osc52": { "branch": "main", "commit": "5e0210990b3c809ec58bbf830e0dabd4bda3a949" },
@@ -49,6 +50,7 @@
   "todo-comments.nvim": { "branch": "main", "commit": "833d8dd8b07eeda37a09e99460f72a02616935cb" },
   "toggleterm.nvim": { "branch": "main", "commit": "e3805fed94d487b81e9c21548535cc820f62f840" },
   "tokyonight.nvim": { "branch": "main", "commit": "f247ee700b569ed43f39320413a13ba9b0aef0db" },
+  "tree-sitter-rstml": { "branch": "main", "commit": "9558d7302c5d8d0b0594dbfce778bb56f9d5079a" },
   "vim-bbye": { "branch": "master", "commit": "25ef93ac5a87526111f43e5110675032dbcacf56" },
   "vim-illuminate": { "branch": "master", "commit": "3bd2ab64b5d63b29e05691e624927e5ebbf0fb86" },
   "vim-moonfly-colors": { "branch": "master", "commit": "fb27da9cf29c56e8031adc4df6674bac6373d7c3" },

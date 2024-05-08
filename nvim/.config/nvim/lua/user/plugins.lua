@@ -109,6 +109,15 @@ require("lazy").setup({
     build = function() vim.fn["mkdp#util#install"]() end,
   },
 
+  	{
+    "rayliwell/tree-sitter-rstml",
+    dependencies = { "nvim-treesitter" },
+    build = ":TSUpdate",
+    config = function()
+      require("tree-sitter-rstml").setup()
+    end
+	},
+
   -- commandline and more
   {
     "folke/noice.nvim",
@@ -120,5 +129,12 @@ require("lazy").setup({
       --   If not available, we use `mini` as the fallback
       "rcarriga/nvim-notify",
       }
+  },
+  {
+    "terrortylor/nvim-comment",
+    -- instead of using its own file
+    config = function()
+      require('nvim_comment').setup()
+    end
   }
 })
