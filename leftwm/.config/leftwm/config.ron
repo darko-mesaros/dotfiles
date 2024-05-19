@@ -58,9 +58,15 @@
     layout_mode: Tag,
     insert_behavior: Bottom,
     scratchpad: [
-        (name: "Alacritty", value: "alacritty", x: 860, y: 390, height: 300, width: 200),
+        (name: "Alacritty", value: "alacritty --config-file ~/.config/alacritty/scratchpad_alacritty.toml", x: 15.00, y: 64, height: 15.00, width: 50.00),
     ],
-    window_rules: [],
+    window_rules: [
+        // floating windows:
+        ( window_class: "pavucontrol", spawn_floating: true ),
+        ( window_class: "signal", spawn_floating: true ),
+        ( window_class: "pcmanfm", spawn_floating: true ),
+        ( window_class: "pinentry", spawn_floating: true ),
+    ],
     disable_current_tag_swap: false,
     disable_tile_drag: false,
     disable_window_snap: true,
@@ -78,7 +84,24 @@
         (command: Execute, value: "rofi -modi calc -font 'Iosevka Nerd Font Mono 16' -show calc -no-show-match -no-sort -width 30 -location 6", modifier: ["modkey", "Shift"], key: "c"),
         
         // Applications
-        (command: Execute, value: "kitty", modifier: ["modkey", "Shift"], key: "Return"),
+        (command: Execute, value: "alacritty", modifier: ["modkey", "Shift"], key: "Return"),
+        
+        // Scratchpad
+        (command: ToggleScratchPad, value: "Alacritty", modifier: ["modkey"], key: "F12"),
+
+        // Media keys
+        (command: Execute, value: "pactl set-sink-mute @DEFAULT_SINK@ toggle", key: "XF86AudioMute"),
+        (command: Execute, value: "pactl set-sink-volume @DEFAULT_SINK@ -3%", key: "XF86AudioLowerVolume"),
+        (command: Execute, value: "pactl set-sink-volume @DEFAULT_SINK@ +3%", key: "XF86AudioRaiseVolume"),
+
+        // Screenshots
+        // - Select
+        (command: Execute, value: "bash -c 'maim --select ~/pic/screens/$(date +%F-%T).png'", key: "Print"),
+        // - Current active window
+        (command: Execute, value: "bash -c 'maim -i $(xdotool getactivewindow) ~/pic/screens/$(date +%F-%T).png'", modifier: ["modkey"], key: "Print"),
+
+
+        // Window management
         (command: CloseWindow, value: "", modifier: ["modkey" ], key: "w"),
         (command: SoftReload, value: "", modifier: ["modkey", "Shift"], key: "r"),
         (command: Execute, value: "loginctl kill-session $XDG_SESSION_ID", modifier: ["modkey", "Shift"], key: "x"),
