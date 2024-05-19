@@ -88,6 +88,7 @@ require("lazy").setup({
    "williamboman/mason-lspconfig.nvim",
 	 "jose-elias-alvarez/null-ls.nvim", -- for formatters and linters
    "RRethy/vim-illuminate",
+   "aznhe21/actions-preview.nvim",
 
 	-- Telescope
 	 "nvim-telescope/telescope.nvim",
