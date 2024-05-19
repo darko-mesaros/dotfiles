@@ -51,6 +51,7 @@ require("lazy").setup({
      "folke/todo-comments.nvim",
      dependencies = { "nvim-lua/plenary.nvim" },
    },
+   "ron-rs/ron.vim", -- RON Rust file syntax support
 
   -- generative ai
    "David-Kunz/gen.nvim",
