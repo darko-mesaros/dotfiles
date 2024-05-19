@@ -28,7 +28,7 @@ export EDITOR="nvim"
 export READER="zathura"
 
 # path
-export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$HOME/bin:$PATH"
 
 # prompt
 setopt PROMPT_SUBST
