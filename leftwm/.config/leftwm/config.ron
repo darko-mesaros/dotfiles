@@ -125,6 +125,13 @@
         (command: PreviousLayout, value: "", modifier: ["modkey", "Control"], key: "Down"),
         (command: FocusWorkspaceNext, value: "", modifier: ["modkey"], key: "Right"),
         (command: FocusWorkspacePrevious, value: "", modifier: ["modkey"], key: "Left"),
+        (command: IncreaseMainWidth, value: "1", modifier: ["modkey", "Shift"], key: "l"),
+
+        (command: DecreaseMainWidth, value: "1", modifier: ["modkey", "Shift"], key: "h"),
+
+
+
+
         (command: GotoTag, value: "1", modifier: ["modkey"], key: "1"),
         (command: GotoTag, value: "2", modifier: ["modkey"], key: "2"),
         (command: GotoTag, value: "3", modifier: ["modkey"], key: "3"),
