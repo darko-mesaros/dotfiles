@@ -66,6 +66,7 @@
         ( window_class: "signal", spawn_floating: true ),
         ( window_class: "pcmanfm", spawn_floating: true ),
         ( window_class: "pinentry", spawn_floating: true ),
+        ( window_class: "nannou", spawn_floating: true ),
     ],
     disable_current_tag_swap: false,
     disable_tile_drag: false,
