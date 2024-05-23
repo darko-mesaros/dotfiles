@@ -66,7 +66,8 @@
         ( window_class: "signal", spawn_floating: true ),
         ( window_class: "pcmanfm", spawn_floating: true ),
         ( window_class: "pinentry", spawn_floating: true ),
-        ( window_class: "nannou", spawn_floating: true ),
+        ( window_class: "nannou", spawn_floating: true ), // nannou creatine rust programming
+        ( window_class: "1password", spawn_floating: true ), // 1password popup
     ],
     disable_current_tag_swap: false,
     disable_tile_drag: false,
