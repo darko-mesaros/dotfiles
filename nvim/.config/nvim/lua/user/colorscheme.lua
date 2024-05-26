@@ -1,4 +1,5 @@
-local colorscheme = "flexoki-dark"
+--local colorscheme = "flexoki-dark"
+local colorscheme = "noctishc"
 
 -- the following tries to set the scheme and if it fails it just returns
 -- no error thrown
