@@ -22,5 +22,7 @@ fi
 # load polybar
 polybar -c $SCRIPTPATH/polybar.ini &> /dev/null
 
+/usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
+
 # load picom (note: cannot set daemon command from config file)
 picom --daemon --config $SCRIPTPATH/picom.conf
