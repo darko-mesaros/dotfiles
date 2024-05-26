@@ -22,6 +22,8 @@ M.setup = function()
 		vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
 	end
 
+
+  -- diagnostic config
 	local config = {
 		virtual_text = false, -- disable virtual text
 		signs = {
@@ -48,7 +50,9 @@ M.setup = function()
 
 	vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
 		border = "rounded",
+    focusable = false,
 	})
+
 end
 
 local function lsp_keymaps(bufnr)
@@ -69,6 +73,7 @@ local function lsp_keymaps(bufnr)
 	keymap(bufnr, "n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
 	keymap(bufnr, "n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 	keymap(bufnr, "n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+	keymap(bufnr, "i", "<C-s>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 end
 
 M.on_attach = function(client, bufnr)
@@ -78,6 +83,11 @@ M.on_attach = function(client, bufnr)
 
 	if client.name == "sumneko_lua" then
 		client.server_capabilities.documentFormattingProvider = false
+	end
+
+	if client.name == "rust_analyzer" then
+    -- shows the types inline
+    --vim.lsp.inlay_hint.enable(true, { bufnr = bufnr})
 	end
 
 	lsp_keymaps(bufnr)

@@ -70,6 +70,21 @@ require("lazy").setup({
    "nyoom-engineering/oxocarbon.nvim",
    "ellisonleao/gruvbox.nvim",
    "kepano/flexoki-neovim",
+  { 
+    "diegoulloao/neofusion.nvim", 
+    priority = 1000 , 
+    config = true, 
+    opts = ... 
+  },
+  {
+  "judaew/ronny.nvim",
+  },
+  {
+    "https://gitlab.com/bartekjaszczak/distinct-nvim",
+  },
+  {"iagorrr/noctishc.nvim"},
+
+
 
 	-- Cmp
    "hrsh7th/nvim-cmp", -- The completion plugin
