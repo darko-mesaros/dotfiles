@@ -117,4 +117,4 @@ alias nnn="nnn -e"
 
 source /usr/share/nvm/init-nvm.sh
 
-neofetch --off
+fastfetch
