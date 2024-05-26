@@ -59,6 +59,7 @@
     insert_behavior: Bottom,
     scratchpad: [
         (name: "Alacritty", value: "alacritty --config-file ~/.config/alacritty/scratchpad_alacritty.toml", x: 15.00, y: 64, height: 15.00, width: 50.00),
+        (name: "Wezterm", value: "wezterm --config 'color_scheme=\"Chester\"' ", x: 15.00, y: 64, height: 15.00, width: 50.00),
     ],
     window_rules: [
         // floating windows:
@@ -86,10 +87,10 @@
         (command: Execute, value: "rofi -modi calc -font 'Iosevka Nerd Font Mono 16' -show calc -no-show-match -no-sort -width 30 -location 6", modifier: ["modkey", "Shift"], key: "c"),
         
         // Applications
-        (command: Execute, value: "alacritty", modifier: ["modkey", "Shift"], key: "Return"),
+        (command: Execute, value: "wezterm", modifier: ["modkey", "Shift"], key: "Return"),
         
         // Scratchpad
-        (command: ToggleScratchPad, value: "Alacritty", modifier: ["modkey"], key: "F12"),
+        (command: ToggleScratchPad, value: "Wezterm", modifier: ["modkey"], key: "F12"),
 
         // Media keys
         (command: Execute, value: "pactl set-sink-mute @DEFAULT_SINK@ toggle", key: "XF86AudioMute"),
