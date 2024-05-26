@@ -85,6 +85,7 @@
         (command: Execute, value: "rofi -combi-modi 'window,drun' -font 'Iosevka Nerd Font Mono 16' -show combi -width 30 -location 6", modifier: ["modkey"], key: "e"),
         (command: Execute, value: "rofi -modi emoji -font 'Iosevka Nerd Font Mono 16' -show emoji -width 30 -location 6", modifier: ["modkey", "Shift"], key: "period"),
         (command: Execute, value: "rofi -modi calc -font 'Iosevka Nerd Font Mono 16' -show calc -no-show-match -no-sort -width 30 -location 6", modifier: ["modkey", "Shift"], key: "c"),
+        (command: Execute, value: "rofi-mixer -font 'Iosevka Nerd Font Mono 16' -show rofi-sink-mixer -no-show-match -no-sort -width 30 -location 6", modifier: ["modkey", "Shift"], key: "v"),
         
         // Applications
         (command: Execute, value: "wezterm", modifier: ["modkey", "Shift"], key: "Return"),
