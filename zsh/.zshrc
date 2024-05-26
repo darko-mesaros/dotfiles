@@ -31,8 +31,24 @@ export READER="zathura"
 export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$HOME/bin:$PATH"
 
 # prompt
+# checks the hostname and sets the colors
+case ${(%):-%m} in
+  bessie)
+    host_color=$fg[green]
+    user_color=$fg[cyan]
+    ;;
+  devbox)
+    host_color=$fg[blue]
+    user_color=$fg[red]
+    ;;
+  *)
+    host_color=$fg[white]
+    user_color=$fg[yellow]
+    ;;
+esac
+
 setopt PROMPT_SUBST
-PROMPT="%{$fg[cyan]%}%n%{$reset_color%}@%{$fg[green]%}%m %{$reset_color%}[%{$fg[yellow]%}%~%{$reset_color%}]: "
+PROMPT="%{$user_color%}%n%{$reset_color%}@%{$host_color%}%m %{$reset_color%}[%{$fg[yellow]%}%~%{$reset_color%}]: "
 # righthand promt (git info be here)
 RPROMPT='$vcs_info_msg_0_'
 
@@ -117,4 +133,5 @@ alias nnn="nnn -e"
 
 source /usr/share/nvm/init-nvm.sh
 
+# Show system info
 fastfetch
