@@ -126,6 +126,7 @@
         (command: DecreaseMainWidth, value: "1", modifier: ["modkey", "Shift"], key: "h"),
         (command: ToggleFullScreen, modifier: ["modkey"], key: "f"),
         (command: ToggleSticky, modifier: ["modkey"],key: "v"),
+        (command: ToggleFloating, modifier: ["modkey", "Control"], key: "f"),
 
         // Tag Management
         (command: ReturnToLastTag, modifier: ["modkey"], key: "a"),
