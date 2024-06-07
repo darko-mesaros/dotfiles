@@ -85,3 +85,6 @@ keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
 -- NOICE
 keymap("n", "<c-l>", "<cmd>Noice dismiss<cr>", opts)
 
+-- OUTLINE
+keymap("n", "<leader>o", "<cmd>Outline<CR>", opts)
+
