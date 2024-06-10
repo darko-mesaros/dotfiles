@@ -70,6 +70,7 @@
         ( window_class: "nannou", spawn_floating: true ), // nannou creatine rust programming
         ( window_class: "1password", spawn_floating: true ), // 1password popup
         ( window_class: "unetbootin.elf", spawn_floating: true ), // unetbootin
+        ( window_class: "streamdeck", spawn_floating: true ), // streamdeck
     ],
     disable_current_tag_swap: false,
     disable_tile_drag: false,
