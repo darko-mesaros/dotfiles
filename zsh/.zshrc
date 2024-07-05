@@ -41,6 +41,10 @@ case ${(%):-%m} in
     host_color=$fg[blue]
     user_color=$fg[red]
     ;;
+  jugoplastika)
+    host_color=$fg[magenta]
+    user_color=$fg[green]
+    ;;
   *)
     host_color=$fg[white]
     user_color=$fg[yellow]
@@ -72,8 +76,8 @@ eval "$(direnv hook zsh)"
 # ALIASES
 
 ## Utilities
-alias ll="exa -l"
-alias l="exa -la"
+alias ll="eza -l --git"
+alias l="eza -la --git"
 alias bm="bashmount"
 alias wget="aria2c -x 16 -s 16"
 alias vim="nvim"
@@ -91,7 +95,9 @@ alias cggpg="gpg --quiet --decrypt /home/darko/workspace/keys/chatgpt.txt.gpg > 
 #alias vvconnect="aws ssm start-session --target $(sed 's/^"//' <<< $(dec2 | jq '.[0][0]') | sed 's/"$//')"
 #alias vvtest="curl $(sed 's/^"//' <<< $(dec2 | jq '.[0][1]') | sed 's/"$//')"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
+#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 ## Needs Figlet and lolcat
 function lolbanner {
@@ -134,4 +140,4 @@ alias nnn="nnn -e"
 source /usr/share/nvm/init-nvm.sh
 
 # Show system info
-fastfetch
+fastfetch -c paleofetch.jsonc

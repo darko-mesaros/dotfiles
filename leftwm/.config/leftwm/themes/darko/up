@@ -11,6 +11,29 @@ fi
 # load the down script to the expected location
 ln -s $SCRIPTPATH/down /tmp/leftwm-theme-down
 
+#boot picom or compton if it exists
+if [ -x "$(command -v picom)" ]; then
+  #picom --config $SCRIPTPATH/picom.conf &> /dev/null &
+  picom --config $HOME/.config/leftwm/themes/current/picom.conf &> /dev/null &
+elif [ -x "$(command -v compton)" ]; then
+  compton &> /dev/null &
+fi
+
+/usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
+
+case $HOSTNAME in
+  jugoplastika) 
+	  # Any specific laptop thing?
+	  ;;
+  bessie) 
+	  # Any specific desktop thing?
+	  # Streamdeck UI
+	  streamdeck -n &> /dev/null &
+	  ;;
+  *)   
+	  echo "How did I get in the middle of nowhere?";;
+esac
+
 # set the theme.ron config
 leftwm-command "LoadTheme $SCRIPTPATH/theme.ron"
 
@@ -20,11 +43,5 @@ if [ -x "$(command -v feh)" ] && [ -f "$HOME/.fehbg" ]; then
 fi
 
 # load polybar
-polybar -c $SCRIPTPATH/polybar.ini &> /dev/null
+polybar -c $SCRIPTPATH/polybar.ini &> /dev/null &
 
-/usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
-
-streamdeck -n &
-
-# load picom (note: cannot set daemon command from config file)
-picom --daemon --config $SCRIPTPATH/picom.conf

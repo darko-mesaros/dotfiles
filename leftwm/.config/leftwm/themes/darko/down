@@ -4,3 +4,4 @@ leftwm-command "UnloadTheme"
 
 pkill polybar
 pkill picom
+pkill polkit-mate-authentication-agent-1
