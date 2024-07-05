@@ -71,6 +71,8 @@
         ( window_class: "1password", spawn_floating: true ), // 1password popup
         ( window_class: "unetbootin.elf", spawn_floating: true ), // unetbootin
         ( window_class: "streamdeck", spawn_floating: true ), // streamdeck
+        ( window_class: "mpv", spawn_floating: true ), // mpv
+        ( window_class: "feh", spawn_floating: true ), // feh
     ],
     disable_current_tag_swap: false,
     disable_tile_drag: false,
@@ -84,10 +86,10 @@
     disable_cursor_reposition_on_resize: false,
     keybind: [
         // ROFI
-        (command: Execute, value: "rofi -combi-modi 'window,drun' -font 'Iosevka Nerd Font Mono 16' -show combi -width 30 -location 6", modifier: ["modkey"], key: "e"),
-        (command: Execute, value: "rofi -modi emoji -font 'Iosevka Nerd Font Mono 16' -show emoji -width 30 -location 6", modifier: ["modkey", "Shift"], key: "period"),
-        (command: Execute, value: "rofi -modi calc -font 'Iosevka Nerd Font Mono 16' -show calc -no-show-match -no-sort -width 30 -location 6", modifier: ["modkey", "Shift"], key: "c"),
-        (command: Execute, value: "rofi-mixer -font 'Iosevka Nerd Font Mono 16' -show rofi-sink-mixer -no-show-match -no-sort -width 30 -location 6", modifier: ["modkey", "Shift"], key: "v"),
+        (command: Execute, value: "rofi -combi-modi 'window,drun' -font 'Iosevka Nerd Font Mono 18' -show combi -width 30 -location 6", modifier: ["modkey"], key: "e"),
+        (command: Execute, value: "rofi -modi emoji -font 'Iosevka Nerd Font Mono 18' -show emoji -width 30 -location 6", modifier: ["modkey", "Shift"], key: "period"),
+        (command: Execute, value: "rofi -modi calc -font 'Iosevka Nerd Font Mono 18' -show calc -no-show-match -no-sort -width 30 -location 6", modifier: ["modkey", "Shift"], key: "c"),
+        (command: Execute, value: "rofi-mixer -font 'Iosevka Nerd Font Mono 18' -show rofi-sink-mixer -no-show-match -no-sort -width 30 -location 6", modifier: ["modkey", "Shift"], key: "v"),
         
         // Applications
         (command: Execute, value: "wezterm", modifier: ["modkey", "Shift"], key: "Return"),
@@ -101,8 +103,8 @@
         // (command: Execute, value: "pactl set-sink-volume @DEFAULT_SINK@ +3%", key: "XF86AudioRaiseVolume"),
         (command: Execute, value: "~/bin/osd_vol down", key: "XF86AudioLowerVolume"),
         (command: Execute, value: "~/bin/osd_vol up", key: "XF86AudioRaiseVolume"),
-        (command: Execute, value: "xbacklight -inc 5", key: "XF86MonBrightnessUp"),
-        (command: Execute, value: "xbacklight -dec 5", key: "XF86MonBrightnessDown"),
+        (command: Execute, value: "brightnessctl s +2%", key: "XF86MonBrightnessUp"),
+        (command: Execute, value: "brightnessctl s 2%-", key: "XF86MonBrightnessDown"),
 
         // Screenshots
         // - Select
@@ -112,7 +114,7 @@
 
         // Window management
         (command: CloseWindow, value: "", modifier: ["modkey" ], key: "w"),
-        (command: MoveToLastWorkspace, value: "", modifier: ["modkey", "Shift"], key: "c"),
+        //(command: MoveToLastWorkspace, value: "", modifier: ["modkey", "Shift"], key: "c"),
         (command: SwapTags, value: "", modifier: ["modkey"], key: "c"),
         (command: MoveWindowUp, value: "", modifier: ["modkey", "Shift"], key: "k"),
         (command: MoveWindowDown, value: "", modifier: ["modkey", "Shift"], key: "j"),
@@ -149,7 +151,6 @@
         (command: MoveToTag, value: "7", modifier: ["modkey", "Shift"], key: "7"),
         (command: MoveToTag, value: "8", modifier: ["modkey", "Shift"], key: "8"),
         (command: MoveToTag, value: "9", modifier: ["modkey", "Shift"], key: "9"),
-        (command: ToggleSticky, modifier: ["modkey"],key: "v"),
         // Misc
         (command: SoftReload, value: "", modifier: ["modkey", "Shift"], key: "r"),
         (command: Execute, value: "loginctl kill-session $XDG_SESSION_ID", modifier: ["modkey", "Shift"], key: "x"),
