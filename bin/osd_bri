@@ -18,7 +18,7 @@ handle_brightnes() {
   osd_cat -A center -p bottom -f '-*-fixed-bold-r-*-*-88-*-*-*-*-*-*-*' -cgreen -s 5 -d 5 --barmode=percentage -P $BRIGHTNESS -T "BRI: "
 }
 if [ -x "$(command -v brightnessctl)" ]; then
-  handle_brightnes
+  handle_brightnes "$@"
 else
   killall -9 -q osd_cat &>/dev/null
   echo "You need brightnessctl installed" | osd_cat -A center -p bottom -f '-*-fixed-bold-r-*-*-88-*-*-*-*-*-*-*' -cgreen -s 5 
