@@ -1,0 +1,29 @@
+#!/bin/sh
+#
+# http://github.com/darko-mesaros/bin
+#
+# list of playlists for play
+#
+# req:
+# play
+# rofi
+#
+
+usage() { >&2 echo "-r; to be used as a rofi shortcut in your favorite wm" ; exit 1 ; }
+
+if [ -z "$1" ] ; then
+    [ "$1" ] || exit 1
+fi
+
+rofimenu() {
+  selected=$(echo -e "kohina\nmods\n" | rofi -theme Monokai -dmenu -p "select playlist: ")
+
+  case $selected in
+    kohina) play -r Kohina ;;
+    mods) play -r mods ;;
+  esac
+}
+case $1 in
+    -h) usage ;;
+    -r) rofimenu ;;
+esac

@@ -1,0 +1,32 @@
+#!/bin/sh
+#
+# http://github.com/darko-mesaros/bin
+#
+# search for and/or play youtube videos with mpv
+# req: 
+# youtube-dl
+# mpv
+# 
+
+case ${1#-} in
+    h)
+        >&2 echo 'Usage: yt [-s] [-m] [search terms]'
+        exit 1
+        ;;
+    s)
+        shift
+        exec youtube-dl -e --default-search ytsearch8 \
+            -- "$(printf '%s\n' "$*" | tr ' ' '+')"
+        ;;
+    m)
+        shift
+        MPV_OPTS="$MPV_OPTS --no-video"
+esac
+
+pkill -x mpv
+
+# shellcheck disable=2086
+exec mpv $MPV_OPTS --no-loop \
+    --title="Hello Youtube" \
+    --script-opts=ytdl_hook-try_ytdl_first=yes \
+    -- ytdl://ytsearch:"$(printf '%s\n' "$*" | tr ' ' '+')"

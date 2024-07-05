@@ -1,0 +1,46 @@
+#!/bin/sh
+#
+# http://github.com/darko-mesaros/grab
+#
+# screen recorder
+#
+# req:
+# ffmpeg
+# x11grab
+#
+
+usage() {
+    >&2 echo 'usage: grab [-s 0|1] filename'
+    exit 1
+}
+  
+#[ "$1" ] || usage
+
+while test $# -gt 0; do
+  case "$1" in
+    -h|--help)
+      usage
+      ;;
+    -s)
+      shift
+      if test $# -gt 0; then
+        export SCREEN=$1
+      else
+        echo "no screen defined"
+        exit 1
+      fi
+      shift
+      ;;
+    *)
+      break
+      ;;
+  esac
+done
+
+#ffmpeg -video_size 1024x768 -framerate 30 -f x11grab -i :0.0+0,0 -f pulse -ac 2 -i default $1.mkv
+
+echo $SCREEN
+echo "file"
+echo $2
+
+

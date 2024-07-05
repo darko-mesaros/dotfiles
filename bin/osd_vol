@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# OSD Volume bar
+# Needs osd_cat and pactl
+
+VOLUME=$(pulsemixer --get-volume | awk '{ print $1 }')
+
+case "$1" in
+  up) $(pactl set-sink-volume @DEFAULT_SINK@ +3%)
+    ;;
+  down) $(pactl set-sink-volume @DEFAULT_SINK@ -3%)
+    ;;
+esac
+
+
+# Print the volume bar
+killall -9 -q osd_cat &>/dev/null
+osd_cat -A center -p bottom -f '-*-fixed-bold-r-*-*-88-*-*-*-*-*-*-*' -cgreen -s 5 -d 5 --barmode=percentage -P $VOLUME -T "VOL: "
+#echo "VOL: -------|----" | osd_cat -A center -p bottom -f '-*-fixed-bold-r-*-*-68-*-*-*-*-*-*-*' -cgreen -s 5

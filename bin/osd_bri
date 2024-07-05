@@ -1,0 +1,26 @@
+#!/bin/bash
+# OSD Brighness bar
+# Needs osd_cat and brightnessctl 
+# Additionally it needs xorg fonts
+
+handle_brightnes() {
+  case "$1" in
+    up) $(brightnessctl s +2%)
+      ;;
+    down) $(brightnessctl s 2%-)
+      ;;
+  esac
+
+  BRIGHTNESS=$(brightnessctl g)
+
+  # Print the volume bar
+  killall -9 -q osd_cat &>/dev/null
+  osd_cat -A center -p bottom -f '-*-fixed-bold-r-*-*-88-*-*-*-*-*-*-*' -cgreen -s 5 -d 5 --barmode=percentage -P $BRIGHTNESS -T "BRI: "
+}
+if [ -x "$(command -v brightnessctl)" ]; then
+  handle_brightnes
+else
+  killall -9 -q osd_cat &>/dev/null
+  echo "You need brightnessctl installed" | osd_cat -A center -p bottom -f '-*-fixed-bold-r-*-*-88-*-*-*-*-*-*-*' -cgreen -s 5 
+fi
+

@@ -1,0 +1,12 @@
+#!/bin/sh
+# 
+# scratchpad for the bspwm window manager
+#
+
+# toggle scratchpad
+if ! xdotool search --onlyvisible --classname 'scratchpad' windowunmap; then
+  if ! xdotool search --classname 'scratchpad' windowmap; then
+    st -t 'scratchpad' -c 'scratchpad' -n 'scratchpad' -e tmux new -s scratchpad
+  fi
+fi
+

@@ -1,0 +1,114 @@
+#!/bin/sh -e 
+# 
+# req:
+# jq
+# socat
+# 
+
+sock=${MPV_SOCKET:-/tmp/mpvsocket}
+
+usage() {
+>&2 cat <<EOF
+[Mitch's MPV Tool]
+
+To use, add 'input-ipc-server=/tmp/mpvsocket' to your mpv.conf
+(alternatively you can specify via \$MPV_SOCKET in the environment)
+
+Options:
+----------
+-t     toggle play/pause
+-n     skip to next in playlist
+-p     skip to prev in playlist
+-f     seek forward by 30 seconds
+-b     seek backward by 30 seconds
+-q     stop playback
+-k     print given metadata key, one of:
+       (filename, artist, title, album, year)
+
+EOF
+exit 1
+}
+
+die() { >&2 printf '%s\n' "$*" ; exit 1 ; }
+
+doiwork() {
+ : | socat - "$sock" 2>/dev/null || die "mpv is not playing on $sock"
+}
+
+
+info() {
+  doiwork
+  POSITION=$(echo '{ "command": ["get_property_string", "time-pos"] }' | socat - "$sock" | jq .data | tr '"' ' ' | cut -d'.' -f 1)
+  REMAINING=$(echo '{ "command": ["get_property_string", "time-remaining"] }' | socat - "$sock" | jq .data | tr '"' ' ' | cut -d'.' -f 1)
+  MEDIATITLE=$(echo '{ "command": ["get_property", "media-title"] }' | socat - "$sock" | jq .data | tr '"' ' ')
+  METADATA=$(echo '{ "command": ["get_property", "filtered-metadata"] }' | socat - "$sock" | jq ".data.Artist, .data.Album, .data.Title")
+
+  if [[ $METADATA =~ "null" ]]
+  then
+    echo $MEDIATITLE
+  else 
+    echo $METADATA
+  fi
+
+  printf '%d:%02d:%02d' $(($POSITION/3600)) $(($POSITION%3600/60)) $(($POSITION%60))
+  printf ' %d:%02d:%02d\n' $(($REMAINING/3600)) $(($REMAINING%3600/60)) $(($REMAINING%60))
+}
+pause() {
+  doiwork
+  echo '{ "command": ["cycle", "pause"] }' | socat - "$sock" > /dev/null
+}
+plnext() {
+  doiwork
+  echo '{ "command": ["playlist-next"] }' | socat - "$sock" > /dev/null
+}
+
+plprev() {
+  doiwork
+  echo '{ "command": ["playlist-prev"] }' | socat - "$sock" > /dev/null
+}
+
+seekback() {
+  doiwork
+  echo '{ "command": ["seek", "-30"] }' | socat - "$sock"  > /dev/null
+}
+
+seekfwd() {
+  doiwork
+  echo '{ "command": ["seek", "+30"] }' | socat - "$sock" > /dev/null
+}
+
+volume() {
+  doiwork
+  echo '{ "command": ["set_property", "volume", "'"$1"'"] }' | socat - "$sock" > /dev/null
+}
+
+title() {
+  doiwork
+  POSITION=$(echo '{ "command": ["get_property_string", "time-pos"] }' | socat - "$sock" | jq .data | tr '"' ' ' | cut -d'.' -f 1)
+  REMAINING=$(echo '{ "command": ["get_property_string", "time-remaining"] }' | socat - "$sock" | jq .data | tr '"' ' ' | cut -d'.' -f 1)
+  MEDIATITLE=$(echo '{ "command": ["get_property", "media-title"] }' | socat - "$sock" | jq .data | tr '"' ' ')
+  METADATA=$(echo '{ "command": ["get_property", "filtered-metadata"] }' | socat - "$sock" | jq ".data.Artist, .data.Album, .data.Title")
+
+  if [[ $METADATA =~ "null" ]]
+  then
+    echo $MEDIATITLE
+  else 
+    echo $METADATA
+  fi
+}
+quit() {
+  doiwork
+  echo '{ "command": ["quit"] }' | socat - "$sock" > /dev/null
+}
+case $1 in
+    *t) pause ;;
+    *n) plnext ;;
+    *p) plprev ;;
+    *f) seekfwd ;;
+    *b) seekback ;;
+    *v) volume "$2" ;;
+    *q) quit ;;
+    *i) info ;;
+    *tl) title ;;
+     *) usage
+esac
