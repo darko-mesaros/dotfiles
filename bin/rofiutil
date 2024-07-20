@@ -1,0 +1,36 @@
+#!/bin/sh
+#
+# http://github.com/darko-mesaros/bin
+#
+# rofi menu of utilities
+#
+# req:
+# 
+# rofi
+#
+
+usage() { >&2 echo "-r; to be used as a rofi shortcut in your favorite wm" ; exit 1 ; }
+
+if [ -z "$1" ] ; then
+    [ "$1" ] || exit 1
+fi
+
+# Restart pulseaudio
+restartpa(){
+  pulseaudion --kill
+}
+
+restartdunstrc(){
+  pulseaudion --kill
+}
+
+rofimenu() {
+  selected=$(echo -e "restart_pulse\nrestart_dunstrc\n" | rofi -theme Monokai -dmenu -p "select command: ")
+
+  case $selected in
+    restart_pulse) restartpa;;
+    restart_dunstrc) restartdunstrc;;
+  esac
+}
+
+rofimenu

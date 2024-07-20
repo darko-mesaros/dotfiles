@@ -1,0 +1,52 @@
+#!/bin/sh
+#
+# http://github.com/darko-mesaros/bin
+#
+# play a given directory with mpv and display album art.
+#
+# req:
+# mpv
+# skroll
+#
+
+usage() { >&2 echo "./play [-r] [-l] <path>" ; exit 1 ; }
+
+if [ -z "$1" ] ; then
+    # if no arg provided, see if our clipboard contains a link
+    set -- "$(xsel -op)"
+    # if so, attempt to play the link
+    if ! echo "$*" | urls >/dev/null ; then
+        # otherwise, try and read from piped input
+        read -r inp
+        set -- "$inp"
+    fi
+    # if still nothing, exit
+    [ "$1" ] || exit 1
+fi
+
+while [ "$1" ] ; do
+    case $1 in
+        -h) usage ;;
+        -r) MPV_OPTS="$MPV_OPTS --shuffle" ; shift ;;
+        -l) MPV_OPTS="$MPV_OPTS --loop"    ; shift ;;
+         *) path=$* ; break
+    esac
+done
+
+if [ ! -e "$path" ] ; then
+    case $path in
+        http*) path=$(printf '%s\n' "$path" | urlcleanse) ;;
+          *.*) ;;
+            *)
+                # must be a non-url string
+                # try to find a local path to play
+                path=$(f ~/mus "$path" | head -n 1)
+                printf '%s\n' "Playing: $path"
+    esac
+fi
+
+pkill -x mpv
+pkill -x skroll
+
+[ -f "$path"/cover.jpg ] && img "$path"/cover.jpg &
+exec mpv $MPV_OPTS --no-video --no-terminal -- "$path"

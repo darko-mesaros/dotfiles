@@ -1,0 +1,31 @@
+#!/bin/sh
+#
+# http://github.com/darko-mesaros/bin
+#
+# take a screenshot
+#
+# req:
+# maim
+#
+
+
+usage() { >&2 echo "./sshot [-r] [-w] [-a] " ; exit 1 ; }
+
+if [ -z "$1" ] ; then
+    [ "$1" ] || exit 1
+fi
+
+fullscreen() {
+  maim ~/pic/screens/$(date +%F-%T).png
+}
+window() {
+  maim -i $(xdotool getactivewindow) ~/pic/screens/$(date +%F-%T).png
+}
+region() {
+  maim --select ~/pic/screens/$(date +%F-%T).png
+}
+case $1 in
+    -r) region ;;
+    -w) window ;;
+    -a) fullscreen ;;
+esac

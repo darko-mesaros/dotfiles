@@ -1,0 +1,30 @@
+#!/bin/sh
+#
+# http://github.com/darko-mesaros/bin
+#
+# dunst do not disturb
+#
+# req:
+# dunst
+#
+
+
+usage() { >&2 echo "./dndunst [-s] [-w] " ; exit 1 ; }
+
+if [ -z "$1" ] ; then
+    [ "$1" ] || exit 1
+fi
+
+start_dnd() {
+  notify-send "DUNST_COMMAND_PAUSE";
+}
+end_dnd() {
+  notify-send "DUNST_COMMAND_RESUME";
+  notify-send "Do Not Disturb" "Do Not Disturb mode ended. Notifications will be shown.";
+}
+case $1 in
+    -s) start_dnd ;;
+    -e) end_dnd ;;
+esac
+
+
