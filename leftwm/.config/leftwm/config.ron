@@ -73,6 +73,7 @@
         ( window_class: "streamdeck", spawn_floating: true ), // streamdeck
         ( window_class: "mpv", spawn_floating: true ), // mpv
         ( window_class: "feh", spawn_floating: true ), // feh
+        ( window_class: "86Box", spawn_floating: true ), // 86Box
     ],
     disable_current_tag_swap: false,
     disable_tile_drag: false,
