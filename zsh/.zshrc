@@ -88,6 +88,9 @@ alias cdi="zi"
 alias zshedit="vim /home/darko/.zshrc"
 alias cggpg="gpg --quiet --decrypt /home/darko/workspace/keys/chatgpt.txt.gpg > /dev/null"
 
+# Youtube
+alias ytdlmp3="yt-dlp -x --audio-format mp3 --audio-quality 0"
+
 # PROJECT 1999
 #alias dec2='aws ec2 describe-instances --filters "Name=instance-state-name,Values=running" "Name=tag:aws:cloudformation:stack-name,Values=VisualVortex99Stack" --query "Reservations[].Instances[].[InstanceId, PublicIpAddress]"'
 #alias vv99dl='aws s3 sync s3://visualvortex99-webassets/ .'
