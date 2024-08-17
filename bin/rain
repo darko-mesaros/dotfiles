@@ -6,15 +6,17 @@
 # 
 # req:
 # youtube-dl
-#
+
+command -v yt-dlp > /dev/null 2>&1 || { echo "Error: yt-dlp is not installed."; exit 1;}
 
 
 file=~/.cache/rain.ogg
+file_no_ext=~/.cache/rain
 url=http://rainymood.com
 
 [ -f "$file" ] ||
-youtube-dl -c --extract-audio --audio-quality 0 \
+yt-dlp -c --extract-audio --audio-quality 0 \
               --audio-format vorbis --prefer-ffmpeg \
-              --no-playlist "$url" -o "$file"
+              --no-playlist "$url" -o "$file_no_ext"
 
 exec play -l "$file"

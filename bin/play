@@ -7,9 +7,14 @@
 # req:
 # mpv
 # skroll
-#
+# xsel
 
 usage() { >&2 echo "./play [-r] [-l] <path>" ; exit 1 ; }
+
+# check for requirements
+command -v mpv > /dev/null 2>&1 || { echo "Error: mpv is not installed."; exit 1;}
+command -v xsel > /dev/null 2>&1 || { echo "Error: xsel is not installed."; exit 1;}
+command -v skroll > /dev/null 2>&1 || { echo "Error: skroll is not installed."; exit 1;}
 
 if [ -z "$1" ] ; then
     # if no arg provided, see if our clipboard contains a link
