@@ -7,6 +7,7 @@ configs.setup({
   ensure_installed = { "bash", "c", "javascript", "json", "lua", "python", "typescript", "tsx", "css", "rust", "java", "yaml", "markdown", "markdown_inline", "vim", "regex", "toml" }, -- one of "all" or a list of languages
   sync_install = false,
 	ignore_install = { "phpdoc" }, -- List of parsers to ignore installing
+  auto_install = false,
 	highlight = {
 		enable = true, -- false will disable the whole extension
     additional_vim_regex_highlighting = false,

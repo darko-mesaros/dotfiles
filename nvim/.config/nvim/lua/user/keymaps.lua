@@ -79,6 +79,7 @@ keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
 keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
+keymap("n", "<leader>d", "<cmd>Telescope treesitter<cr>", opts)
 keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
 
 
@@ -87,4 +88,7 @@ keymap("n", "<c-l>", "<cmd>Noice dismiss<cr>", opts)
 
 -- OUTLINE
 keymap("n", "<leader>o", "<cmd>Outline<CR>", opts)
+
+-- GITSIGNS
+keymap("n", "<leader>b", "<cmd>:Gitsigns toggle_current_line_blame<CR>", opts)
 

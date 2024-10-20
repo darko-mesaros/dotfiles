@@ -74,6 +74,7 @@
         ( window_class: "mpv", spawn_floating: true ), // mpv
         ( window_class: "feh", spawn_floating: true ), // feh
         ( window_class: "Civ6", spawn_floating: true ), // Steam: Civ6
+        ( window_class: "piksel", spawn_floating: true ), // Bevy: Piksel
     ],
     disable_current_tag_swap: false,
     disable_tile_drag: false,
