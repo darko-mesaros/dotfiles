@@ -45,3 +45,8 @@ fi
 # load polybar
 polybar -c $SCRIPTPATH/polybar.ini &> /dev/null &
 
+# Autorandr
+autorandr --change &
+
+# Caps To Ctrl & Esc
+xcape -e 'Control_L=Escape' -t 175
