@@ -45,6 +45,10 @@ case ${(%):-%m} in
     host_color=$fg[magenta]
     user_color=$fg[green]
     ;;
+  mikroplastika)
+    host_color=$fg[green]
+    user_color=$fg[magenta]
+    ;;
   *)
     host_color=$fg[white]
     user_color=$fg[yellow]
@@ -137,7 +141,9 @@ export NNN_PLUG='p:preview-tui'
 
 alias nnn="nnn -e"
 
-source /usr/share/nvm/init-nvm.sh
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # Show system info
 fastfetch -c paleofetch.jsonc
