@@ -27,3 +27,8 @@ require "user.markdownpreview"
 require "user.actionspreview"
 require "user.outline"
 require "user.keymaps"
+
+require('plugin.demo_helper').setup({
+    snippets_dir = vim.fn.stdpath('config') .. '/demo_snippets',  -- customize path if needed
+    typewriter_speed = 50  -- adjust typing speed (milliseconds)
+    })

@@ -58,8 +58,7 @@
     layout_mode: Tag,
     insert_behavior: Bottom,
     scratchpad: [
-        (name: "Alacritty", value: "alacritty --config-file ~/.config/alacritty/scratchpad_alacritty.toml", x: 15.00, y: 64, height: 15.00, width: 50.00),
-        (name: "Wezterm", value: "wezterm --config 'color_scheme=\"Chester\"' ", x: 15.00, y: 64, height: 15.00, width: 50.00),
+        (name: "Wezterm", value: "wezterm", args: ["--config", "color_scheme=\"Chester\""], x: 15.00, y: 64, height: 15.00, width: 50.00),
     ],
     window_rules: [
         // floating windows:
@@ -91,9 +90,10 @@
         (command: Execute, value: "rofi -modi emoji -font 'Iosevka Nerd Font Mono 18' -show emoji -width 30 -location 6", modifier: ["modkey", "Shift"], key: "period"),
         (command: Execute, value: "rofi -modi calc -font 'Iosevka Nerd Font Mono 18' -show calc -no-show-match -no-sort -width 30 -location 6", modifier: ["modkey", "Shift"], key: "c"),
         (command: Execute, value: "rofi-mixer -font 'Iosevka Nerd Font Mono 18' -show rofi-sink-mixer -no-show-match -no-sort -width 30 -location 6", modifier: ["modkey", "Shift"], key: "v"),
+        (command: Execute, value: "ronema", modifier: ["modkey", "Control"], key: "F11"),
         
         // Applications
-        (command: Execute, value: "wezterm", modifier: ["modkey", "Shift"], key: "Return"),
+        (command: Execute, value: "ghostty", modifier: ["modkey", "Shift"], key: "Return"),
         
         // Scratchpad
         (command: ToggleScratchPad, value: "Wezterm", modifier: ["modkey"], key: "F12"),

@@ -16,6 +16,7 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, {}) -- vim help
 vim.keymap.set('n', '<leader>fc', builtin.treesitter, {}) -- tree sitter func names, variables
 
 telescope.load_extension('media_files')
+telescope.load_extension('luasnip')
 
 local actions = require "telescope.actions"
 

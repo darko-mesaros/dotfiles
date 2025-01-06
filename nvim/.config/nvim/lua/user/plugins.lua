@@ -111,6 +111,15 @@ require("lazy").setup({
 	 "nvim-telescope/telescope.nvim",
    "nvim-telescope/telescope-media-files.nvim",
 
+  -- Telescope LuaSnip
+  {
+  "benfowler/telescope-luasnip.nvim",
+    dependencies = {
+      "nvim-telescope/telescope.nvim"
+    }
+   },
+
+
 	-- Treesitter
 	"nvim-treesitter/nvim-treesitter",
 
