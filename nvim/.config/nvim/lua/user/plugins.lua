@@ -149,6 +149,14 @@ require("lazy").setup({
       }
   },
   {
+    'darko-mesaros/codecast.nvim',
+    dependencies = {
+        'nvim-lua/plenary.nvim',
+    },
+    -- local
+    dir = "~/workspace/repos/codecast.nvim",
+  },
+  {
     "terrortylor/nvim-comment",
     -- instead of using its own file
     config = function()

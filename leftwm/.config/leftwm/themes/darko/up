@@ -43,5 +43,6 @@ if [ -x "$(command -v feh)" ] && [ -f "$HOME/.fehbg" ]; then
 fi
 
 # load polybar
-polybar -c $SCRIPTPATH/polybar.ini &> /dev/null &
+polybar -c $SCRIPTPATH/polybar.ini primary &> /dev/null &
+polybar -c $SCRIPTPATH/polybar.ini secondary &> /dev/null &
 

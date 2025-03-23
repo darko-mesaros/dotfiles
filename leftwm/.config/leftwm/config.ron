@@ -27,6 +27,7 @@
     max_window_width: None,
     layouts: [
         "CenterMain",
+        "Fibonacci",
         "EvenHorizontal",
         "EvenVertical",
         "Monocle",
@@ -34,7 +35,6 @@
         "MainAndVertStack",
         "MainAndHorizontalStack",
         "RightMainAndVertStack",
-        "Fibonacci",
         "Dwindle",
         "MainAndDeck",
         "CenterMainBalanced",
@@ -58,8 +58,7 @@
     layout_mode: Tag,
     insert_behavior: Bottom,
     scratchpad: [
-        (name: "Alacritty", value: "alacritty --config-file ~/.config/alacritty/scratchpad_alacritty.toml", x: 15.00, y: 64, height: 15.00, width: 50.00),
-        (name: "Wezterm", value: "wezterm --config 'color_scheme=\"Chester\"' ", x: 15.00, y: 64, height: 15.00, width: 50.00),
+        (name: "Wezterm", value: "wezterm", args: ["--config","color_scheme=\"Chester\""] , x: 15.00, y: 64, height: 15.00, width: 50.00),
     ],
     window_rules: [
         // floating windows:
@@ -75,6 +74,7 @@
         ( window_class: "feh", spawn_floating: true ), // feh
         ( window_class: "Civ6", spawn_floating: true ), // Steam: Civ6
         ( window_class: "piksel", spawn_floating: true ), // Bevy: Piksel
+        ( window_class: "floatme", spawn_floating: true ), // general floatme
     ],
     disable_current_tag_swap: false,
     disable_tile_drag: false,
