@@ -1,0 +1,18 @@
+# CodeCast.nvim
+
+A Neovim plugin for creating code demonstrations with typewriter effects.
+
+## Installation
+
+With Lazy:
+```lua
+{
+    'darko-mesaros/codecast.nvim',
+    dependencies = {
+        'nvim-lua/plenary.nvim',
+    },
+    config = function()
+        require('codecast').setup()
+    end
+}
+```
