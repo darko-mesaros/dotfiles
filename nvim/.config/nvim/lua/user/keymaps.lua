@@ -89,3 +89,9 @@ keymap("n", "<c-l>", "<cmd>Noice dismiss<cr>", opts)
 -- OUTLINE
 keymap("n", "<leader>o", "<cmd>Outline<CR>", opts)
 
+-- SNACKS
+keymap("n", "<leader>z", "<esc>:lua Snacks.zen()<CR>", opts)
+keymap("n", "<leader>Z", "<esc>:lua Snacks.zen.zoom()<CR>", opts)
+keymap("n", "<leader>.", "<esc>:lua Snacks.scratch()<CR>", opts)
+keymap("n", "<leader>S", "<esc>:lua Snacks.scratch.select()<CR>", opts)
+

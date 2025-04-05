@@ -93,7 +93,7 @@
         (command: Execute, value: "ronema", modifier: ["modkey", "Control"], key: "F11"),
         
         // Applications
-        (command: Execute, value: "ghostty", modifier: ["modkey", "Shift"], key: "Return"),
+        (command: Execute, value: "wezterm", modifier: ["modkey", "Shift"], key: "Return"),
         
         // Scratchpad
         (command: ToggleScratchPad, value: "Wezterm", modifier: ["modkey"], key: "F12"),

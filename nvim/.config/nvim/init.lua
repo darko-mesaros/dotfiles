@@ -27,6 +27,7 @@ require "user.markdownpreview"
 require "user.actionspreview"
 require "user.outline"
 require "user.keymaps"
+require "user.snacks"
 
 require('plugin.demo_helper').setup({
     snippets_dir = vim.fn.stdpath('config') .. '/demo_snippets',  -- customize path if needed

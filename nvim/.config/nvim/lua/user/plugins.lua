@@ -154,7 +154,7 @@ require("lazy").setup({
       -- OPTIONAL:
       --   `nvim-notify` is only needed, if you want to use the notification view.
       --   If not available, we use `mini` as the fallback
-      "rcarriga/nvim-notify",
+      -- "rcarriga/nvim-notify",
       }
   },
   {
@@ -163,5 +163,10 @@ require("lazy").setup({
     config = function()
       require('nvim_comment').setup()
     end
+  },
+  {
+  "folke/snacks.nvim",
+  priority = 1000,
+  lazy = false,
   }
 })
