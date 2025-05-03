@@ -8,12 +8,12 @@ if not bstatus_ok then
   return
 end
 
-
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {}) -- vim help
-vim.keymap.set('n', '<leader>fc', builtin.treesitter, {}) -- tree sitter func names, variables
+vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
+vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+vim.keymap.set('n', '<leader>fc', builtin.lsp_document_symbols, { desc = 'Telescope treesitter' })
+vim.keymap.set('n', '<leader>fw', builtin.lsp_dynamic_workspace_symbols, { desc = 'Telescope treesitter' })
 
 telescope.load_extension('media_files')
 telescope.load_extension('luasnip')
@@ -102,6 +102,7 @@ telescope.setup {
     -- builtin picker
   -- },
   extensions = {
+    fzf = {},
     media_files = {
         -- filetypes whitelist
         -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}

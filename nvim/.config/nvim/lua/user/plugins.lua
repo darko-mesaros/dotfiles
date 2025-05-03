@@ -114,6 +114,7 @@ require("lazy").setup({
 
 	-- Treesitter
 	"nvim-treesitter/nvim-treesitter",
+  "nvim-treesitter/playground",
 
 	-- Git
 	 "lewis6991/gitsigns.nvim",
