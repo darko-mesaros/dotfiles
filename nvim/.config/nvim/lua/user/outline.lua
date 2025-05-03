@@ -3,5 +3,9 @@ if not status_ok then
   return
 end
 
-outline.setup {
-}
+outline.setup({
+  symbol_folding = {
+    autofold_depth = false
+  },
+})
+

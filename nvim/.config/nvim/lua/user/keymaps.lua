@@ -3,7 +3,7 @@ local opts = { noremap = true, silent = true }
 -- local term_opts = { silent = true }
 
 -- Shorten function name
-local keymap = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
 
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
@@ -84,7 +84,7 @@ keymap("n", "<leader>g", "<cmd>Telescope live_grep<cr>", opts)
 
 
 -- NOICE
-keymap("n", "<c-l>", "<cmd>Noice dismiss<cr>", opts)
+keymap("n", "<leader>c", "<cmd>Noice dismiss<cr>", opts)
 
 -- OUTLINE
 keymap("n", "<leader>o", "<cmd>Outline<CR>", opts)

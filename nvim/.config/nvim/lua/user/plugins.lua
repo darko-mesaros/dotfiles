@@ -20,7 +20,6 @@ if not status_ok then
 end
 
 require("lazy").setup({
-   "wbthomason/packer.nvim", -- Have packer manage itself
    "nvim-lua/plenary.nvim",  -- Useful lua functions used by lots of plugins
    "windwp/nvim-autopairs",  -- Autopairs, integrates with both cmp and treesitter
    "numToStr/Comment.nvim",  -- comment toggling with gcc and gbc
@@ -32,14 +31,14 @@ require("lazy").setup({
    "nvim-lualine/lualine.nvim",  -- flexible status line
    "akinsho/toggleterm.nvim",
    "ahmedkhalf/project.nvim",
-   "lewis6991/impatient.nvim",
+   -- "lewis6991/impatient.nvim",
    { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
    "goolord/alpha-nvim",
 	 "folke/which-key.nvim",
    "jinh0/eyeliner.nvim",
    "eandrju/cellular-automaton.nvim", -- make it rain
    "norcalli/nvim-colorizer.lua",     -- convert hex values to colors
-   "ojroques/nvim-osc52",             -- support for osc52 clipboard. REMOVE IN VERSION 0.10 when released
+   -- "ojroques/nvim-osc52",             -- support for osc52 clipboard. REMOVE IN VERSION 0.10 when released
    "hedyhli/outline.nvim",
    {
     "nvim-telescope/telescope-cheat.nvim",
@@ -149,13 +148,6 @@ require("lazy").setup({
       --   If not available, we use `mini` as the fallback
       -- "rcarriga/nvim-notify",
       }
-  },
-  {
-    "terrortylor/nvim-comment",
-    -- instead of using its own file
-    config = function()
-      require('nvim_comment').setup()
-    end
   },
   {
   "folke/snacks.nvim",
