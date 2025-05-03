@@ -1,6 +1,7 @@
 -- TODO doing some stuff here
 require "user.options"
 require "user.plugins"
+require "user.cyberdream"
 require "user.colorscheme"
 require "user.cmp"
 require "user.noice"

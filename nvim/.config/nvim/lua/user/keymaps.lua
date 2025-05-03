@@ -44,8 +44,8 @@ keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 
 -- Change dark and light theme
 -- TODO: Figure out a single key combo for toggles
-keymap("n", "<leader>gd", "<Esc>:colorscheme moonfly<CR>", opts)
-keymap("n", "<leader>gl", "<Esc>:colorscheme morning<CR>", opts)
+-- keymap("n", "<leader>gd", "<Esc>:colorscheme moonfly<CR>", opts)
+-- keymap("n", "<leader>gl", "<Esc>:colorscheme morning<CR>", opts)
 
 -- Toggleterm
 keymap("n", "<leader>tt", "<Esc>:ToggleTerm direction=float<CR>", opts)
@@ -80,7 +80,7 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
 keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
 keymap("n", "<leader>s", "<cmd>Telescope luasnip<cr>", opts)
-keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
+keymap("n", "<leader>g", "<cmd>Telescope live_grep<cr>", opts)
 
 
 -- NOICE

@@ -71,6 +71,7 @@ require("lazy").setup({
    "nyoom-engineering/oxocarbon.nvim",
    "ellisonleao/gruvbox.nvim",
    "kepano/flexoki-neovim",
+   "scottmckendry/cyberdream.nvim",
   { 
     "diegoulloao/neofusion.nvim", 
     priority = 1000 , 
