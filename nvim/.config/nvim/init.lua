@@ -1,4 +1,4 @@
--- TODO doing somsone stuff here
+-- Neovim configuration
 require "user.options"
 require "user.plugins"
 require "user.cyberdream"
