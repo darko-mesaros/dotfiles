@@ -1,4 +1,4 @@
--- TODO doing some stuff here
+-- TODO doing somsone stuff here
 require "user.options"
 require "user.plugins"
 require "user.cyberdream"
@@ -21,7 +21,6 @@ require "user.colorizer"
 require "user.toggleterm"
 require "user.nvim-tmux"
 require "user.gennvim"
---require "user.chatgpt"
 require "user.osc52"
 require "user.todo"
 require "user.markdownpreview"

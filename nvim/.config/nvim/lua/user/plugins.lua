@@ -56,14 +56,6 @@ require("lazy").setup({
 
   -- generative ai
    "David-Kunz/gen.nvim",
-   {
-    "jackMort/ChatGPT.nvim",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim"
-    }
-   },
 	-- Colorschemes
    "folke/tokyonight.nvim",
    "lunarvim/darkplus.nvim",
