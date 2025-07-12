@@ -1,19 +1,49 @@
 #!/bin/bash
 
 # OSD Volume bar
-# Needs osd_cat and pactl
+# Shows a retro-inspired volume bar on screen
+# Dependencies: osd_cat, pactl, pulsemixer
 
-VOLUME=$(pulsemixer --get-volume | awk '{ print $1 }')
+# Check for required dependencies
+for cmd in osd_cat pactl pulsemixer; do
+    if ! command -v "$cmd" &> /dev/null; then
+        echo "Error: $cmd is not installed. Please install it to use this script."
+        exit 1
+    fi
+done
 
+# Process arguments
 case "$1" in
-  up) $(pactl set-sink-volume @DEFAULT_SINK@ +3%)
+  up)
+    pactl set-sink-volume @DEFAULT_SINK@ +3%
     ;;
-  down) $(pactl set-sink-volume @DEFAULT_SINK@ -3%)
+  down)
+    pactl set-sink-volume @DEFAULT_SINK@ -3%
+    ;;
+  mute)
+    pactl set-sink-mute @DEFAULT_SINK@ toggle
+    ;;
+  *)
+    # No action if no valid argument provided
     ;;
 esac
 
+# Get the current volume AFTER changes
+VOLUME=$(pulsemixer --get-volume | awk '{ print $1 }')
+MUTE_STATUS=$(pulsemixer --get-mute)
 
-# Print the volume bar
-killall -9 -q osd_cat &>/dev/null
-osd_cat -A center -p bottom -f '-*-fixed-bold-r-*-*-88-*-*-*-*-*-*-*' -cgreen -s 5 -d 5 --barmode=percentage -P $VOLUME -T "VOL: "
-#echo "VOL: -------|----" | osd_cat -A center -p bottom -f '-*-fixed-bold-r-*-*-68-*-*-*-*-*-*-*' -cgreen -s 5
+# Display different colors based on volume level and mute status
+if [ "$MUTE_STATUS" -eq 1 ]; then
+    COLOR="red"
+    TITLE="MUTED: "
+elif [ "$VOLUME" -gt 100 ]; then
+    COLOR="yellow"  # Warning color for volumes above 100%
+    TITLE="VOL: "
+else
+    COLOR="green"
+    TITLE="VOL: "
+fi
+
+killall -9 q osd_cat &>/dev/null
+osd_cat -A center -p bottom -f '-*-fixed-bold-r-*-*-88-*-*-*-*-*-*-*' \
+        -cgreen -s 5 -d 5 --barmode=percentage -P $VOLUME -T "$TITLE"

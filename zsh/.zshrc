@@ -28,7 +28,7 @@ export EDITOR="nvim"
 export READER="zathura"
 
 # path
-export PATH="$HOME/bin:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/bin:$PATH:$HOME/.local/share/gem/ruby/3.4.0/bin"
 
 # prompt
 # checks the hostname and sets the colors

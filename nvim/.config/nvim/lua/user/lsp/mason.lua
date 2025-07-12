@@ -15,7 +15,7 @@ local servers = {
   "clangd",
   "terraformls",
   "rust_analyzer",
-  "asm_lsp",
+  --"asm_lsp",
 }
 
 local settings = {

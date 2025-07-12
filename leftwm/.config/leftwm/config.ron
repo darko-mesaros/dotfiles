@@ -75,6 +75,8 @@
         ( window_class: "Civ6", spawn_floating: true ), // Steam: Civ6
         ( window_class: "piksel", spawn_floating: true ), // Bevy: Piksel
         ( window_class: "floatme", spawn_floating: true ), // general floatme
+        ( window_class: "x64", spawn_floating: true ), // C64 emulator
+        ( window_class: "prismlauncher", spawn_floating: true ), // Prism Minecraft Launcher
     ],
     disable_current_tag_swap: false,
     disable_tile_drag: false,
