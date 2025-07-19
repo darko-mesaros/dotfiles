@@ -18,6 +18,7 @@ config.adjust_window_size_when_changing_font_size = false
 
 -- TAB BAR
 config.enable_tab_bar = false
+config.enable_wayland = false
 
 -- and finally, return the configuration to wezterm
 return config

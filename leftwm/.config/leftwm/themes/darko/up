@@ -50,3 +50,6 @@ autorandr --change &
 
 # Caps To Ctrl & Esc
 xcape -e 'Control_L=Escape' -t 175
+
+# Udiskie
+udiskie &

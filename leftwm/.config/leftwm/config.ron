@@ -105,8 +105,8 @@
         // (command: Execute, value: "pactl set-sink-volume @DEFAULT_SINK@ +3%", key: "XF86AudioRaiseVolume"),
         (command: Execute, value: "~/bin/osd_vol down", key: "XF86AudioLowerVolume"),
         (command: Execute, value: "~/bin/osd_vol up", key: "XF86AudioRaiseVolume"),
-        (command: Execute, value: "brightnessctl s +2%", key: "XF86MonBrightnessUp"),
-        (command: Execute, value: "brightnessctl s 2%-", key: "XF86MonBrightnessDown"),
+        (command: Execute, value: "~/bin/osd_bri up", key: "XF86MonBrightnessUp"),
+        (command: Execute, value: "~/bin/osd_bri down", key: "XF86MonBrightnessDown"),
 
         // Screenshots
         // - Select

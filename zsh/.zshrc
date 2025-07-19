@@ -8,6 +8,10 @@
 autoload -U colors && colors
 autoload -Uz add-zsh-hook
 autoload -Uz vcs_info
+autoload -U edit-command-line
+
+# Widget
+zle -N edit-command-line
 
 # set this up for version control information (git branch)
 add-zsh-hook precmd vcs_info
@@ -75,6 +79,9 @@ eval "$(zoxide init zsh)"
 eval "$(thefuck --alias)"
 eval "$(direnv hook zsh)"
 
+# Keybinds
+bindkey -M vicmd 'v' edit-command-line
+
 # ALIASES
 
 ## Utilities
@@ -139,10 +146,19 @@ export NNN_PLUG='p:preview-tui'
 
 alias nnn="nnn -e"
 
+alias ideas="nvim ~/workspace/darko-ideas.md"
+
 source /usr/share/nvm/init-nvm.sh
 
 # Show system info
-fastfetch -c paleofetch.jsonc
+# fastfetch -c paleofetch.jsonc
+
+# STARSHIP.RS
+
+eval "$(starship init zsh)"
+
 
 # Amazon Q post block. Keep at the bottom of this file.
 [[ -f "${HOME}/.local/share/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/.local/share/amazon-q/shell/zshrc.post.zsh"
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
