@@ -12,7 +12,8 @@ config.color_scheme = 'Dark Pastel (Gogh)'
 
 -- FONTS
 -- config.font = wezterm.font 'Iosevka Nerd Font Mono'
-config.font = wezterm.font 'FiraCode Nerd Font Mono'
+--config.font = wezterm.font 'FiraCode Nerd Font Mono'
+config.font = wezterm.font 'Zed Plex Mono'
 -- so the font increase with CTRL + works in a WM
 config.adjust_window_size_when_changing_font_size = false
 
