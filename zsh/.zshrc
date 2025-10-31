@@ -96,6 +96,8 @@ alias cd="z"
 alias cdi="zi"
 alias zshedit="vim /home/darko/.zshrc"
 alias cggpg="gpg --quiet --decrypt /home/darko/workspace/keys/chatgpt.txt.gpg > /dev/null"
+alias bat="upower -i /org/freedesktop/UPower/devices/battery_BAT0"
+alias wifi='nmcli dev wifi | sort -k3 -nr | awk '\''!seen[$2]++'\'''
 
 # PROJECT 1999
 #alias dec2='aws ec2 describe-instances --filters "Name=instance-state-name,Values=running" "Name=tag:aws:cloudformation:stack-name,Values=VisualVortex99Stack" --query "Reservations[].Instances[].[InstanceId, PublicIpAddress]"'

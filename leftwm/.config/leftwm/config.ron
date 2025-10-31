@@ -74,6 +74,8 @@
         ( window_class: "feh", spawn_floating: true ), // feh
         ( window_class: "86Box", spawn_floating: true ), // 86Box
         ( window_class: "floatme", spawn_floating: true ), // Generic floater
+        ( window_class: "flappydragon", spawn_floating: true ), // Hands on Rust
+        ( window_class: "dragans_fury", spawn_floating: true ), // Hands on Rust
     ],
     disable_current_tag_swap: false,
     disable_tile_drag: false,
