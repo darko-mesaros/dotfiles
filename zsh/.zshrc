@@ -1,5 +1,5 @@
-# Amazon Q pre block. Keep at the top of this file.
-[[ -f "${HOME}/.local/share/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/.local/share/amazon-q/shell/zshrc.pre.zsh"
+# Kiro CLI pre block. Keep at the top of this file.
+[[ -f "${HOME}/.local/share/kiro-cli/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/.local/share/kiro-cli/shell/zshrc.pre.zsh"
 # CURRENT zshrc REQUIREMENTS:
 # exa
 # bashmount
@@ -98,6 +98,7 @@ alias zshedit="vim /home/darko/.zshrc"
 alias cggpg="gpg --quiet --decrypt /home/darko/workspace/keys/chatgpt.txt.gpg > /dev/null"
 alias bat="upower -i /org/freedesktop/UPower/devices/battery_BAT0"
 alias wifi='nmcli dev wifi | sort -k3 -nr | awk '\''!seen[$2]++'\'''
+alias q='kiro-cli'
 
 # PROJECT 1999
 #alias dec2='aws ec2 describe-instances --filters "Name=instance-state-name,Values=running" "Name=tag:aws:cloudformation:stack-name,Values=VisualVortex99Stack" --query "Reservations[].Instances[].[InstanceId, PublicIpAddress]"'
@@ -159,8 +160,7 @@ source /usr/share/nvm/init-nvm.sh
 
 eval "$(starship init zsh)"
 
-
-# Amazon Q post block. Keep at the bottom of this file.
-[[ -f "${HOME}/.local/share/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/.local/share/amazon-q/shell/zshrc.post.zsh"
-
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+
+# Kiro CLI post block. Keep at the bottom of this file.
+[[ -f "${HOME}/.local/share/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/.local/share/kiro-cli/shell/zshrc.post.zsh"
