@@ -116,6 +116,13 @@ require("lazy").setup({
 	"nvim-treesitter/nvim-treesitter",
   "nvim-treesitter/playground",
 
+  -- Folding
+  {
+    'kevinhwang91/nvim-ufo',
+    dependencies = {'kevinhwang91/promise-async'}
+
+  },
+
 	-- Git
 	 "lewis6991/gitsigns.nvim",
 

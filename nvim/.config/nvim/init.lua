@@ -27,6 +27,7 @@ require "user.outline"
 require "user.keymaps"
 require "user.telescope"
 require "user.snacks"
+require "user.nvim-ufo"
 
 require('plugin.demo_helper').setup({
     snippets_dir = vim.fn.stdpath('config') .. '/demo_snippets',  -- customize path if needed
