@@ -3,7 +3,7 @@ if not status_ok then
   return
 end
 
-vim.o.foldcolumn = '1'
+vim.o.foldcolumn = '0' -- No fold column
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
@@ -19,7 +19,7 @@ end, {desc = "Peek fold"})
 
 ufo.setup {
   provider_selector = function(bufnr, filetype, buftype)
-    return {'lsp', 'indent'}
+    return {'treesitter', 'indent'}
   end
 }
 
