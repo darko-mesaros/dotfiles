@@ -59,7 +59,7 @@
     insert_behavior: Bottom,
     scratchpad: [
         (name: "Wezterm", value: "wezterm", args: ["--config", "color_scheme=\"Chester\""], x: 15.00, y: 64, height: 50.00, width: 50.00),
-        (name: "Kiro", value: "wezterm", args: ["--config", "color_scheme=\"GruvboxDark\"", "start", "kiro-cli", "--agent", "ghosty"], x: 0, y: 32, height: 1060, width: 960),
+        (name: "Kiro", value: "wezterm", args: ["--config", "color_scheme=\"GruvboxDark\"", "--config", "set_environment_variables={EDITOR=\"vim\"}", "start", "kiro-cli", "--agent", "ghosty"], x: 0, y: 32, height: 1060, width: 960),
     ],
     window_rules: [
         // floating windows:

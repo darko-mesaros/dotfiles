@@ -151,6 +151,7 @@ alias nnn="nnn -e"
 alias oc="opencode"
 
 alias ideas="nvim ~/workspace/darko-ideas.md"
+alias mov2mp4='ffmpeg -i'
 
 source /usr/share/nvm/init-nvm.sh
 
