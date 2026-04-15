@@ -394,3 +394,8 @@ desc = "Archive selected files (compression level)"
 on   = [ "c", "a", "u" ]
 run  = "plugin compress -phl"
 desc = "Archive selected files (password+header+level)"
+
+[[mgr.prepend_keymap]]
+on   = [ "c", "h" ]
+run  = 'shell "heic2png --webp \"$@\"" --confirm'
+desc = "Convert HEIC to WebP"
