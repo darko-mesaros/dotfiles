@@ -1,5 +1,3 @@
-local fn = vim.fn
--- Automatically install lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -95,7 +93,8 @@ require("lazy").setup({
 	 "neovim/nvim-lspconfig", -- enable LSP
    "williamboman/mason.nvim", -- simple to use language server installer
    "williamboman/mason-lspconfig.nvim",
-	 "jose-elias-alvarez/null-ls.nvim", -- for formatters and linters
+	 --"jose-elias-alvarez/null-ls.nvim", -- for formatters and linters
+	 "nvimtools/none-ls.nvim", -- for formatters and linters
    "RRethy/vim-illuminate",
    "aznhe21/actions-preview.nvim",
 
@@ -113,8 +112,10 @@ require("lazy").setup({
 
 
 	-- Treesitter
-	"nvim-treesitter/nvim-treesitter",
-  "nvim-treesitter/playground",
+	{
+    "nvim-treesitter/nvim-treesitter",
+    branch='main',
+  },
 
   -- Folding
   {
@@ -138,7 +139,7 @@ require("lazy").setup({
 
   	{
     "rayliwell/tree-sitter-rstml",
-    dependencies = { "nvim-treesitter" },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
     build = ":TSUpdate",
     config = function()
       require("tree-sitter-rstml").setup()

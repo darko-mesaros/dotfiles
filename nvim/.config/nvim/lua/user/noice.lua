@@ -4,12 +4,17 @@ if not status_ok then
 end
 
 noice.setup({
- -- routes = {
- --   {
- --     view = "notify",
- --     filter = { event = "msg_showmode" },
- --   },
- -- },
+  routes = {
+    -- suppress lspconfig/vim.lsp deprecation warnings at startup
+    {
+      filter = { event = "msg_show", find = "deprecated" },
+      opts = { skip = true },
+    },
+    {
+      filter = { event = "msg_show", find = "vim.lsp.with" },
+      opts = { skip = true },
+    },
+  },
   lsp = {
     -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
     override = {
