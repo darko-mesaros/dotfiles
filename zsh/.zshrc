@@ -35,7 +35,7 @@ setopt EXTENDED_HISTORY       # record timestamps
 bindkey -v
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/darko/.zshrc'
+zstyle :compinstall filename "$HOME/.zshrc"
 
 autoload -Uz compinit
 compinit
@@ -59,8 +59,8 @@ alias k="kubectl"
 alias c="clear && pwd && ll"
 alias cd="z"
 alias cdi="zi"
-alias zshedit="vim /home/darko/.zshrc"
-alias cggpg="gpg --quiet --decrypt /home/darko/workspace/keys/chatgpt.txt.gpg > /dev/null"
+alias zshedit="vim ~/.zshrc"
+alias cggpg="gpg --quiet --decrypt \"$HOME/workspace/keys/chatgpt.txt.gpg\" > /dev/null"
 #alias bat="upower -i /org/freedesktop/UPower/devices/battery_BAT0"
 alias wifi='nmcli dev wifi | sort -k3 -nr | awk '\''!seen[$2]++'\'''
 alias q='kiro-cli'
@@ -132,7 +132,7 @@ done
 unset _cmd
 
 # Grimoire patterns
-export PATTERNS_DIR="/home/darko/workspace/kiro-projects/better-agent/pattern-library/patterns"
+export PATTERNS_DIR="$HOME/workspace/kiro-projects/better-agent/pattern-library/patterns"
 
 # Show system info
 # fastfetch -c paleofetch.jsonc
@@ -146,13 +146,13 @@ eval "$(starship init zsh)"
 [[ -f "${HOME}/.local/share/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/.local/share/kiro-cli/shell/zshrc.post.zsh"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/darko/tmp/google-cloud-sdk/path.zsh.inc' ]; then . '/home/darko/tmp/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f "$HOME/tmp/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/tmp/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/home/darko/tmp/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/darko/tmp/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/tmp/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/tmp/google-cloud-sdk/completion.zsh.inc"; fi
 
 # The next line updates PATH for Nebius CLI.
-if [ -f '/home/darko/.nebius/path.zsh.inc' ]; then source '/home/darko/.nebius/path.zsh.inc'; fi
+if [ -f "$HOME/.nebius/path.zsh.inc" ]; then source "$HOME/.nebius/path.zsh.inc"; fi
 # The next line enables shell command completion for Nebius CLI.
-if [ -f '/home/darko/.nebius/completion.zsh.inc' ]; then source '/home/darko/.nebius/completion.zsh.inc'; fi
+if [ -f "$HOME/.nebius/completion.zsh.inc" ]; then source "$HOME/.nebius/completion.zsh.inc"; fi
 alias fix-memory="~/.local/bin/fix-memory"

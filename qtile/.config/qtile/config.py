@@ -68,7 +68,7 @@ terminal = "kitty"
 rofi_launcher = "rofi -combi-modi 'window,drun' -font 'Iosevka Nerd Font Mono 16' -show combi -width 30 -location 6"
 rofi_emoji = "rofi -modi emoji -font 'Iosevka Nerd Font Mono 16' -show emoji -width 30 -location 6"
 rofi_calc = "rofi -modi calc -font 'Iosevka Nerd Font Mono 16' -show calc -no-show-match -no-sort -width 30 -location 6"
-rofi_shortcuts = "bash /home/darko/bin/rofishort.sh"
+rofi_shortcuts = "bash " + os.path.expanduser("~/bin/rofishort.sh")
 
 keys = [
     # A list of available commands that can be bound to keys can be found
