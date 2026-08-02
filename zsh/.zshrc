@@ -5,67 +5,33 @@
 # bashmount
 # fzf
 # END REQUIREMENTS
-autoload -U colors && colors
-autoload -Uz add-zsh-hook
-autoload -Uz vcs_info
 autoload -U edit-command-line
 
 # Widget
 zle -N edit-command-line
 
-# set this up for version control information (git branch)
-add-zsh-hook precmd vcs_info
-
-zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:*' formats " %F{blue}%c%u(%b)%f"
-zstyle ':vcs_info:*' actionformats " %F{blue}%c%u(%b)%f %a"
-zstyle ':vcs_info:*' stagedstr "%F{green}"
-zstyle ':vcs_info:*' unstagedstr "%F{red}"
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
-+vi-git-untracked() {
-  if git --no-optional-locks status --porcelain 2> /dev/null | grep -q "^??"; then
-    hook_com[staged]+="%F{red}"
-  fi
-}
+# keys — secrets live in a gitignored file, never in this tracked config
+[[ -f "${HOME}/.config/zsh/secrets.zsh" ]] && source "${HOME}/.config/zsh/secrets.zsh"
 
 # editor
 export EDITOR="nvim"
 export READER="zathura"
 
 # path
-export PATH="$HOME/bin:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/bin:$PATH"
+export PATH="$HOME/go/bin:$HOME/bin:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/bin:$PATH"
 
-# prompt
-# checks the hostname and sets the colors
-case ${(%):-%m} in
-  bessie)
-    host_color=$fg[green]
-    user_color=$fg[cyan]
-    ;;
-  devbox)
-    host_color=$fg[blue]
-    user_color=$fg[red]
-    ;;
-  jugoplastika)
-    host_color=$fg[magenta]
-    user_color=$fg[green]
-    ;;
-  *)
-    host_color=$fg[white]
-    user_color=$fg[yellow]
-    ;;
-esac
-
-setopt PROMPT_SUBST
-PROMPT="%{$user_color%}%n%{$reset_color%}@%{$host_color%}%m %{$reset_color%}[%{$fg[yellow]%}%~%{$reset_color%}]: "
-# righthand promt (git info be here)
-RPROMPT='$vcs_info_msg_0_'
+# prompt is handled by Starship (see `starship init zsh` near the bottom of this file)
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=50000
+SAVEHIST=50000
+setopt HIST_IGNORE_ALL_DUPS   # drop older duplicate commands
+setopt HIST_IGNORE_SPACE      # don't record lines starting with a space
+setopt HIST_REDUCE_BLANKS     # trim superfluous whitespace before saving
+setopt HIST_VERIFY            # expand !! etc. onto the line before running
+setopt SHARE_HISTORY          # share history live across concurrent sessions
+setopt EXTENDED_HISTORY       # record timestamps
 bindkey -v
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
@@ -76,7 +42,6 @@ compinit
 # End of lines added by compinstall
 
 eval "$(zoxide init zsh)"
-eval "$(thefuck --alias)"
 eval "$(direnv hook zsh)"
 
 # Keybinds
@@ -96,7 +61,7 @@ alias cd="z"
 alias cdi="zi"
 alias zshedit="vim /home/darko/.zshrc"
 alias cggpg="gpg --quiet --decrypt /home/darko/workspace/keys/chatgpt.txt.gpg > /dev/null"
-alias bat="upower -i /org/freedesktop/UPower/devices/battery_BAT0"
+#alias bat="upower -i /org/freedesktop/UPower/devices/battery_BAT0"
 alias wifi='nmcli dev wifi | sort -k3 -nr | awk '\''!seen[$2]++'\'''
 alias q='kiro-cli'
 
@@ -149,17 +114,30 @@ export NNN_PLUG='p:preview-tui'
 
 alias nnn="nnn -e"
 alias oc="opencode"
+alias ghosty="kiro-cli --tui --agent ghosty"
 
 alias ideas="nvim ~/workspace/darko-ideas.md"
-alias mov2mp4='ffmpeg -i'
 
-source /usr/share/nvm/init-nvm.sh
+# nvm — lazy-loaded to keep shell startup fast.
+# Sourcing nvm.sh auto-selects the default Node, which is the slow part. These
+# shims defer that until the first nvm/node/npm/npx call, then remove
+# themselves, source nvm for real, and re-run your command transparently.
+_load_nvm() {
+  unset -f nvm node npm npx 2>/dev/null
+  source /usr/share/nvm/init-nvm.sh
+}
+for _cmd in nvm node npm npx; do
+  eval "${_cmd}() { _load_nvm; ${_cmd} \"\$@\"; }"
+done
+unset _cmd
+
+# Grimoire patterns
+export PATTERNS_DIR="/home/darko/workspace/kiro-projects/better-agent/pattern-library/patterns"
 
 # Show system info
 # fastfetch -c paleofetch.jsonc
 
 # STARSHIP.RS
-
 eval "$(starship init zsh)"
 
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
@@ -172,3 +150,9 @@ if [ -f '/home/darko/tmp/google-cloud-sdk/path.zsh.inc' ]; then . '/home/darko/t
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/darko/tmp/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/darko/tmp/google-cloud-sdk/completion.zsh.inc'; fi
+
+# The next line updates PATH for Nebius CLI.
+if [ -f '/home/darko/.nebius/path.zsh.inc' ]; then source '/home/darko/.nebius/path.zsh.inc'; fi
+# The next line enables shell command completion for Nebius CLI.
+if [ -f '/home/darko/.nebius/completion.zsh.inc' ]; then source '/home/darko/.nebius/completion.zsh.inc'; fi
+alias fix-memory="~/.local/bin/fix-memory"
