@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Stop an Oatbar candidate and explicitly restore the system 0.2.0 bar.
+set -euo pipefail
+
+system_oatbar="/usr/bin/oatbar"
+runtime_dir="${XDG_RUNTIME_DIR:-/tmp}"
+rollback_log="${runtime_dir}/oatbar-0.2.0-rollback.log"
+
+if [[ ! -x "${system_oatbar}" ]]; then
+  printf 'System Oatbar not found: %s\n' "${system_oatbar}" >&2
+  exit 1
+fi
+
+pkill -x oatbar 2>/dev/null || true
+sleep 0.5
+nohup "${system_oatbar}" >"${rollback_log}" 2>&1 &
+system_pid=$!
+sleep 2
+
+if ! kill -0 "${system_pid}" 2>/dev/null; then
+  printf 'System Oatbar 0.2.0 exited during rollback.\n' >&2
+  cat "${rollback_log}" >&2 || true
+  exit 1
+fi
+
+printf 'System Oatbar 0.2.0 restored (PID %s).\n' "${system_pid}"

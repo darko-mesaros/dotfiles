@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Emit a compact plain VPN state for Oatbar; TOML owns presentation.
+set -o pipefail
+
+vpn_names=()
+
+if command -v tailscale >/dev/null 2>&1 \
+  && tailscale status --json 2>/dev/null | jq -e '.BackendState == "Running"' >/dev/null 2>&1; then
+  vpn_names+=("TS")
+fi
+
+if command -v ip >/dev/null 2>&1 \
+  && ip -br link show type wireguard up 2>/dev/null | grep -q '[^[:space:]]'; then
+  vpn_names+=("WG")
+fi
+
+if ((${#vpn_names[@]})); then
+  printf '%s\n' "$(IFS=+; echo "${vpn_names[*]}")"
+else
+  printf 'off\n'
+fi

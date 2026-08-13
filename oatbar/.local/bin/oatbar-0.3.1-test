@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Start the isolated Oatbar 0.3.1 candidate. It never replaces /usr/bin/oatbar.
+set -euo pipefail
+
+candidate_bin="${HOME}/.local/opt/oatbar/0.3.1/bin"
+candidate_oatbar="${candidate_bin}/oatbar"
+system_oatbar="/usr/bin/oatbar"
+runtime_dir="${XDG_RUNTIME_DIR:-/tmp}"
+test_log="${runtime_dir}/oatbar-0.3.1-test.log"
+rollback_log="${runtime_dir}/oatbar-0.2.0-rollback.log"
+
+if [[ ! -x "${candidate_oatbar}" ]]; then
+  printf 'Candidate not found: %s\n' "${candidate_oatbar}" >&2
+  exit 1
+fi
+
+pkill -x oatbar 2>/dev/null || true
+sleep 0.5
+PATH="${candidate_bin}:${PATH}" nohup "${candidate_oatbar}" --instance-name oatbar-031-test >"${test_log}" 2>&1 &
+candidate_pid=$!
+sleep 2
+
+if ! kill -0 "${candidate_pid}" 2>/dev/null; then
+  printf 'Oatbar 0.3.1 exited during startup; restoring system Oatbar 0.2.0.\n' >&2
+  cat "${test_log}" >&2 || true
+  nohup "${system_oatbar}" >"${rollback_log}" 2>&1 &
+  exit 1
+fi
+
+printf 'Oatbar 0.3.1 test is running (PID %s). Roll back with oatbar-0.3.1-revert.\n' "${candidate_pid}"

@@ -48,9 +48,13 @@ autorandr --change
 
 sleep 1
 
-# load polybar
-#polybar -c $SCRIPTPATH/polybar.ini &> /dev/null &
-oatbar &
+# Load the pinned Oatbar 0.3.1 build as the primary bar. Keep the system package as fallback.
+OATBAR_031_BIN="$HOME/.local/opt/oatbar/0.3.1/bin"
+if [ -x "$OATBAR_031_BIN/oatbar" ]; then
+  PATH="$OATBAR_031_BIN:$PATH" "$OATBAR_031_BIN/oatbar" &
+else
+  oatbar &
+fi
 
 # Caps To Ctrl & Esc
 setxkbmap -option ctrl:nocaps

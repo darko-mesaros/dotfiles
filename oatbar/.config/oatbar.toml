@@ -1,0 +1,184 @@
+[[bar]]
+height=32
+position = "top"
+blocks_left=[ "launcher", "workspace", "active_window"]
+blocks_right=["layout_enum", "sep", "disk_free", "sep", "memory_use", "sep", "cpu_bar", "sep", "wifi_ssid", "sep", "vpn_status", "sep", "battery_percent", "sep", "messaget", "sep", "clock"]
+background="#191919dd"
+monitor="eDP"
+
+[[var]]
+name="theme_color"
+#value="#c7f2bb"
+value="#00FFFF"
+#value="#facd5a"
+#value="#f9dbff"
+#value="#9cf7ff"
+
+# VPN presentation is owned here; the helper emits only TS, WG, TS+WG, or off.
+[[var]]
+name="vpn_up_color"
+value="#00FF00"
+
+[[var]]
+name="vpn_down_color"
+value="#808080"
+
+[[var]]
+name="vpn_unknown_color"
+value="#FFFF00"
+
+[[var]]
+name="vpn_state_color"
+value="${vpn_status:value}"
+replace_first_match=true
+replace = [
+  ["^(TS|WG|TS[+]WG)$", "${vpn_up_color}"],
+  ["^off$", "${vpn_down_color}"],
+  [".*", "${vpn_unknown_color}"],
+]
+
+[[default_block]]
+background="#191919dd"
+active_background="#333333dd"
+active_overline_color = "${theme_color}"
+active_foreground = "${theme_color}"
+active_output_format = '<span weight="bold">${value}</span>'
+font="Zed Plex Mono 16"
+
+[[command]]
+name="ticker"
+command="~/workspace/projects/oatbar_commands/target/release/message_ticker -m 'Rust go Brrrr. '"
+interval=1
+
+[[command]]
+name="cpu_bar"
+command="~/workspace/projects/oatbar_commands/target/release/barmon cpu --all-cores"
+interval=2
+
+[[command]]
+name="memory_use"
+command="~/workspace/projects/oatbar_commands/target/release/barmon memory --percent"
+interval=30
+
+[[command]]
+name="disk_free"
+command="df -h / | tail -1 | awk '{print $5}'"
+interval=60
+
+[[command]]
+name="wifi_ssid"
+# Keep the block truthful when NetworkManager reports no active Wi-Fi connection.
+command = '''nmcli -t -f active,ssid,signal dev wifi | sed -n -E 's/^yes:(.*):([0-9]+)$/\1 (\2%)/p' | sed 's/\\:/:/g' | awk 'NF { found=1; print } END { if (!found) print "offline" }' '''
+interval=60
+
+[[command]]
+name="vpn_status"
+command="${HOME}/.local/bin/oatbar-vpn-status"
+interval=15
+
+[[command]]
+name="clock"
+command="date '+%a %b %e %H:%M:%S'"
+interval=1
+
+[[command]]
+name="desktop"
+command="oatbar-desktop"
+
+[[command]]
+name="keyboard"
+command="oatbar-keyboard"
+
+[[command]]
+name="battery_percent"
+command="cat /sys/class/power_supply/BAT0/capacity"
+interval=60
+
+# Sign reflects real net energy flow, not just plugged-in state: "Not charging"
+# (charge-threshold hold) and "Full" both render unsigned since there's no
+# actual charge/discharge happening.
+[[command]]
+name="battery_power"
+command='''awk -v status="$(cat /sys/class/power_supply/BAT0/status)" 'BEGIN{sign=(status=="Discharging")?"-":(status=="Charging")?"+":""} {printf "%s%.1f", sign, $1/1000000}' /sys/class/power_supply/BAT0/power_now'''
+interval=5
+
+# [[command]]
+# name="rec_notif"
+# command='xprop -root DARKO_RECORDING 2>/dev/null | grep -q "active" && echo " REC" || echo ""'
+# interval=15
+
+[[block]]
+name="launcher"
+type="text"
+value="<span foreground='${theme_color}'>Run</span>"
+on_mouse_left="rofi -show drun"
+
+[[block]]
+name = 'workspace'
+type = 'enum'
+active = '${desktop:workspace.active}'
+variants = '${desktop:workspace.variants}'
+on_mouse_left = "oatbar-desktop $BLOCK_INDEX"
+
+[[block]]
+name = 'layout_enum'
+type = 'enum'
+active = '${keyboard:layout.active}'
+variants = '${keyboard:layout.variants}'
+on_mouse_left = "oatbar-keyboard layout set $BLOCK_INDEX"
+
+[[block]]
+name='wifi_ssid'
+type = 'text'
+value = '<span foreground="${theme_color}"><b>wifi:</b></span> ${wifi_ssid:value}'
+on_mouse_left="ronema"
+
+[[block]]
+name='vpn_status'
+type = 'text'
+value = '<span foreground="${theme_color}"><b>vpn: </b></span><span foreground="${vpn_state_color}">${vpn_status:value}</span>'
+
+[[block]]
+name='disk_free'
+type = 'text'
+value = '<span foreground="${theme_color}"><b>/</b></span> ${disk_free:value}'
+
+[[block]]
+name='battery_percent'
+type = 'text'
+value = '<span foreground="${theme_color}"><b>bat:</b></span> ${battery_percent:value}% (${battery_power:value}W)'
+
+[[block]]
+name = 'clock'
+type = 'text'
+value = '${clock:value}'
+
+[[block]]
+name = 'messaget'
+type = 'text'
+value = '${ticker:value}'
+
+[[block]]
+name = 'cpu_bar'
+type = 'text'
+value = '<span foreground="${theme_color}"><b>cpu:</b></span> ${cpu_bar:value}'
+
+[[block]]
+name = 'memory_use'
+type = 'text'
+value = '<span foreground="${theme_color}"><b>mem:</b></span> ${memory_use:value}% used'
+
+[[block]]
+name='active_window'
+type = 'text'
+value = ':: ${desktop:window_title.value} ::'
+show_if_matches = [['${desktop:window_title.value}','.+']]
+pango_markup = false
+on_mouse_left="rofi -show window"
+
+[[block]]
+name='sep'
+type = 'text'
+value = '|'
+padding = 0.0
+foreground = "#FF00FF"
