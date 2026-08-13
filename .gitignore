@@ -25,6 +25,13 @@ id_ed25519
 *.local.sh
 *.local.toml
 
+# Stow-managed Oatbar test launchers live under .local/bin; keep only these tracked.
+!oatbar/.local/
+!oatbar/.local/bin/
+!oatbar/.local/bin/oatbar-0.3.1-test
+!oatbar/.local/bin/oatbar-0.3.1-revert
+!oatbar/.local/bin/oatbar-vpn-status
+
 # ── Python bytecode (ranger / qtile configs) ──
 __pycache__/
 *.py[cod]
@@ -41,3 +48,6 @@ tags
 
 # ── Logs ──
 *.log
+
+# ── Local agent/tool config (not a shell dotfile, machine-local) ──
+.kiro/
